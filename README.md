@@ -28,12 +28,35 @@ Sunday, 12/17-- Styling (MVP done) Begin Reach Goals
 Monday, 12/18-- Reach Goals
 Tuesday, 12/19-- Finish Reach goals, deploy
 
+TABLE STRUCTURE:  A USER CAN HAVE MANY PETS
+User Table:
+-Username
+-Password
+-First Name
+-Last Name
+-Address
+-City
+-State_abbrv
+-Zip
+-Phone
+-Email
 
+Pets Table:
+-User_ID
+-Name
+-Post Type
+-Animal Type
+-Breed
+-Age
+-Picture
+-Description
+-Foster Length (optional)
 
 
 Foreseen Challenges/Obstacles
-1.  Update/delete with auth seems easier said than done, expecting possible issues with these functions.  Important to make sure that if a user delete's their profile, it deletes their posts as well.
-2.  Ability to upload image files to database
-3.  Ability to upload batch data file for larger submissions (shelters)
+1.  I've never done Auth with React and have not done it on Rails on my own work, so this would seem like an obvious place for an unexpected roadblock to appear.
+2. Update/delete with auth seems easier said than done, expecting possible issues with these functions.  Important to make sure that if a user delete's their profile, it deletes their posts as well.
+3.  Ability to upload image files to database
+4.  Ability to upload batch data file for larger submissions (shelters)
 
 GitHub Link:  https://github.com/dlevenson44/FindAPet
