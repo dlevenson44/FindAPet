@@ -18,14 +18,23 @@ Technologies Used:
 Front-end will be built using React, back-end will be built using Rails.
 
 Timeline:
+
 Monday, 12/11-- get proposal approved and create test server starting with auth
+
 Tuesday, 12/12-- get test server working, begin building prod server starting with auth
+
 Wednesday, 12/13-- finish building prod server, begin building React
+
 Thursday, 12/14-- continue building React
+
 Friday, 12/15-- finish building React
+
 Saturday, 12/16-- Styling
+
 Sunday, 12/17-- Styling (MVP done) Begin Reach Goals
+
 Monday, 12/18-- Reach Goals
+
 Tuesday, 12/19-- Finish Reach goals, deploy
 
 TABLE STRUCTURE:  A USER CAN HAVE MANY PETS
