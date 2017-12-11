@@ -38,27 +38,47 @@ Monday, 12/18-- Reach Goals
 Tuesday, 12/19-- Finish Reach goals, deploy
 
 TABLE STRUCTURE:  A USER CAN HAVE MANY PETS
+
 User Table:
+
 -Username
+
 -Password
+
 -First Name
+
 -Last Name
+
 -Address
+
 -City
+
 -State_abbrv
+
 -Zip
+
 -Phone
+
 -Email
 
 Pets Table:
+
 -User_ID
+
 -Name
+
 -Post Type
+
 -Animal Type
+
 -Breed
+
 -Age
+
 -Picture
+
 -Description
+
 -Foster Length (optional)
 
 
