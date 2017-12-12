@@ -4,6 +4,7 @@ class User < ApplicationRecord
 	#bcrypt method that handles password hashing
   has_secure_password
   has_secure_token :auth_token
+  has_many :pets
 
   #used to logout
   def invalidate_token
