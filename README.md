@@ -53,7 +53,7 @@ User Table:
 
 -City
 
--State_abbrv
+-State
 
 -Zip
 
