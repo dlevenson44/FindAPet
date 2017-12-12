@@ -16,13 +16,12 @@ class SessionsController < ApiController
   end
 
   private
+  def allow_token_to_be_used_only_once_for(user)
+    user.regenerate_auth_token
+  end
 
   def send_token_for_valid_login_of(user)
     render json: { token: user.auth_token }
-  end
-
-  def allow_token_to_be_used_only_once_for(user)
-    user.regenerate_auth_token
   end
 
   def logout

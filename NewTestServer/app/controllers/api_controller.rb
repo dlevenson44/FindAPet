@@ -8,14 +8,12 @@ class ApiController < ApplicationController
   end
 
   protected
-
   def render_unauthorized(message)
     errors = { errors: [ detail: message ] }
     render json: errors, status: :unauthorized
   end
 
   private
-
   def authenticate_token
     #uses generated token, provided in request's header, makes it available for search
     authenticate_with_http_token do | token, options |
