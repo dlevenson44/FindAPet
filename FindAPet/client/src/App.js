@@ -1,8 +1,50 @@
+//import React and styling
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+//import from react router
+import {BrowserRouter as Router, Link, Redirect, Route} form 'react-router-dom';
+
+//import module and components
+import Auth from './modules/Auth'
+import RegisterForm from './components/RegisterForm'
+import LoginForm form './components/LoginForm'
+import Dashboard from './components/Dashboard'
+import PetList from './components/PetList'
+
+
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      auth: Auth.isUserAuthenticated(),
+      //shouldGoToDash: false,
+    }
+    this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this)
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
+  }
+
+  handleRegisterSubmit(e, data) {
+    e.preventDefault()
+    fetch('/users', {
+      method: 'POST',
+      body: JSON.stringify({
+        user: data,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(res => res.json())
+    .then(res => {
+      Auth.authenticateToken(res.token)
+      this.setState({
+        auth: Auth.isUserAuthenticated(),
+        //shouldGoToDash: true,
+      })
+    }).catch(err => { console.log(err) })
+  }
+
   render() {
     return (
       <div className="App">
