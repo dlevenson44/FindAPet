@@ -45,6 +45,24 @@ class App extends Component {
     }).catch(err => { console.log(err) })
   }
 
+  handleLoginSubmit(e, data) {
+    e.preventDefault()
+    fetch('/login', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(res => res.json())
+    .then(res => {
+      Auth.authenticateToken(res.token)
+      this.setState({
+        auth: Auth.isUserAuthenticated(),
+        //shouldGoToDash: true,
+      })
+    }).catch(err=> console.log(err))
+  }
+
   render() {
     return (
       <div className="App">
