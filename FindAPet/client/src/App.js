@@ -63,6 +63,21 @@ class App extends Component {
     }).catch(err=> console.log(err))
   }
 
+  handleLogout() {
+    fetch('/logout', {
+      method: 'DELETE',
+      headers: {
+        token: Auth.getToken(),
+        'Authorization': `Token ${Auth.getToken()}`,
+      }
+    }).then(res => {
+      Auth.deauthenticateToken()
+      this.setState({
+        auth: Auth.isUserAuthenticated(),
+      })
+    }).catch(err=> console.log(err))
+  }
+
   render() {
     return (
       <div className="App">
