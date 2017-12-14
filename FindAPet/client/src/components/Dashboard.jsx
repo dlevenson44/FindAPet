@@ -81,17 +81,18 @@ class Dashboard extends Component {
 					{(this.state.petsLoaded) 
 						? this.state.myPets.map(pet => {
 							var editPath=`/pets/${pet.id}/edit`
-							this.state.editPath=editPath
+							// this.state.editPath=editPath
+
 							console.log(editPath)
 							console.log(this, 'this is the this value from dashboard l 85')
 						return (
-							//add onclick method to this form that changes state 
+							 
 								<Link to={editPath} key={pet.id}>{pet.name}</Link>
 							)
 					}) 
 						: <p>Loading.....</p>
 					}						
-					
+	<Route path="/pets/:id/edit" render={() => <EditPetForm />} />					
 				</div>
 			</Router>
 		)
