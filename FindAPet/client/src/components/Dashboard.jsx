@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 import Auth from '../modules/Auth'
 import AddPetForm from './AddPetForm'
+import EditPetForm from './EditPetForm'
 
 class Dashboard extends Component {
 	constructor() {
@@ -51,14 +52,33 @@ class Dashboard extends Component {
 		}).catch(err => console.log(err))
 	}
 
+	editPet(e, data) {
+		fetch(`/pets/${data.id}`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				token: Auth.getToken(),
+				'Authorization': `Token ${Auth.getToken()}`,
+			},
+			body: JSON.stringify({
+				pet: data,
+			}),
+		}).then(res => res.json())
+		.then(res => {
+			console.log(res, 'this is the res from editPet')
+			this.getUserPets()
+		}).catch(err => console.log(err))
+	}
+
 	render() {
 		return(
 			<div className="dash">
 				<AddPetForm addPet={this.addPet} />
+				<h1>click on pet name to edit</h1>
 				{console.log(this, 'is the this value from render')}				
 				{(this.state.petsLoaded) 
 					? this.state.myPets.map(pet => {
-					return (<h1 key={pet.id}>{pet.name}</h1>)
+					return (<Link to="/pets/${pet.id}/edit" key={pet.id}>{pet.name}</Link>)
 				}) 
 					: <p>Loading.....</p>}
 			</div>

@@ -45,3 +45,5 @@ class EditPetForm extends Component {
 			)
 	}
 }
+
+export default EditPetForm;
