@@ -80,15 +80,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <div className="App">
+          <div className="nav">
+            <Link to="/login">Login</Link>
+            <Link to="/register">Register</Link>
+            <Link to="/dash">Dash</Link>
+            <Link to="/pets">Pets</Link>
+            <span onClick={this.handleLogout}>Logout</span>
+          </div>
+          <Route exact path="/pets" render={() => <PetList /> } />
+          <Route exact path="/register" render={() => (this.state.auth) ?
+            <Redirect to="/dath" /> :
+            <RegisterForm handleRegisterSubmit={this.handleRegisterSubmit} /> } />
+          <Route exact path="/login" render={() => (this.state.auth) ? 
+            <Redirect to="/dash" /> :
+            <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> } />
+          <Route exactpath="/dash" render={() => <Dashboard /> } />
+        </div>
+      </Router>
     );
   }
 }
