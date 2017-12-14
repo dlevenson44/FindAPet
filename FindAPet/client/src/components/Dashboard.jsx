@@ -16,6 +16,7 @@ class Dashboard extends Component {
 		this.getUserPets()
 	}
 
+
 	getUserPets() {
 		fetch('/profile', {
 			method: 'GET',

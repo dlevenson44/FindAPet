@@ -78,6 +78,10 @@ class App extends Component {
     }).catch(err=> console.log(err))
   }
 
+  //Below line taken out from line 103
+  // <Route exactpath="/dash" render={() => <Dashboard /> } />
+
+
   render() {
     return (
       <Router>
@@ -91,12 +95,12 @@ class App extends Component {
           </div>
           <Route exact path="/pets" render={() => <PetList /> } />
           <Route exact path="/register" render={() => (this.state.auth) ?
-            <Redirect to="/dath" /> :
+            <Redirect to="/dash" /> :
             <RegisterForm handleRegisterSubmit={this.handleRegisterSubmit} /> } />
           <Route exact path="/login" render={() => (this.state.auth) ? 
             <Redirect to="/dash" /> :
             <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> } />
-          <Route exactpath="/dash" render={() => <Dashboard /> } />
+          <p>loading from app.js</p>
         </div>
       </Router>
     );
