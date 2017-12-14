@@ -11,6 +11,7 @@ import RegisterForm from './components/RegisterForm'
 import LoginForm from './components/LoginForm'
 import Dashboard from './components/Dashboard'
 import PetList from './components/PetList'
+import EditPetForm from './components/EditPetForm'
 
 
 class App extends Component {
@@ -79,6 +80,7 @@ class App extends Component {
   }
 
   render() {
+    
     return (
       <Router>
         <div className="App">
@@ -99,6 +101,9 @@ class App extends Component {
             <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> 
             } />
           <Route exact path="/profile" render={() => <Dashboard />} />
+           
+
+          
         </div>
       </Router>
     );
