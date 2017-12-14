@@ -23,7 +23,7 @@ class Dashboard extends Component {
 			petsLoaded: false,
 			editPath: ''
 		}
-		
+
 	}
 
 	componentDidMount(){
@@ -83,8 +83,10 @@ class Dashboard extends Component {
 					}) 
 						: <p>Loading.....</p>
 					}						
-					<Route exact path="/pets/:id/edit" render={() => <EditPetForm
+					<Route exact path="/pets/:id/edit" render={(props) => <EditPetForm
+						{...props}
 					 pet={this.state.pet} state={this.state}/>} editPet={this.editPet}/>					
+						}
 				</div>
 			</Router>
 		)

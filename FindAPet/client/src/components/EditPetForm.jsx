@@ -24,8 +24,9 @@ class EditPetForm extends Component {
 
 	editPet(e, data) {
 		e.preventDefault()
-		console.log('pet edited')
-		fetch(`/pets/${data.id}`, {
+		// console.log(data)
+		const id = this.props.match.params.id;
+		fetch(`/pets/${id}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
