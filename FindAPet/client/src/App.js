@@ -38,6 +38,7 @@ class App extends Component {
     }).then(res => res.json())
     .then(res => {
       Auth.authenticateToken(res.token)
+      console.log('new user created')
       this.setState({
         auth: Auth.isUserAuthenticated(),
         //shouldGoToDash: true,
@@ -56,6 +57,7 @@ class App extends Component {
     }).then(res => res.json())
     .then(res => {
       Auth.authenticateToken(res.token)
+      console.log('user logged in')
       this.setState({
         auth: Auth.isUserAuthenticated(),
         //shouldGoToDash: true,
@@ -72,6 +74,7 @@ class App extends Component {
       }
     }).then(res => {
       Auth.deauthenticateToken()
+      console.log('user logged out')
       this.setState({
         auth: Auth.isUserAuthenticated(),
       })
@@ -89,7 +92,7 @@ class App extends Component {
           <div className="nav">
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
-            <Link to="/dash">Dash</Link>
+            <Link to="/profile">Dash</Link>
             <Link to="/pets">Pets</Link>
             <span onClick={this.handleLogout}>Logout</span>
           </div>
@@ -97,12 +100,12 @@ class App extends Component {
           <Route exact path="/register" render={() => (this.state.auth) ?
               <Redirect to="/dash" />  :
               <RegisterForm handleRegisterSubmit={this.handleRegisterSubmit} /> 
-             } />
+            } />
           <Route exact path="/login" render={() => (this.state.auth) ? 
             <Redirect to="/dash" /> :
             <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> 
-            } />   
-          <p>loading from app.js</p>
+            } />
+          <Route exact path="/profile" render={() => <Dashboard />} />
         </div>
       </Router>
     );
