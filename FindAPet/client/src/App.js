@@ -95,11 +95,13 @@ class App extends Component {
           </div>
           <Route exact path="/pets" render={() => <PetList /> } />
           <Route exact path="/register" render={() => (this.state.auth) ?
-            <Redirect to="/dash" /> :
-            <RegisterForm handleRegisterSubmit={this.handleRegisterSubmit} /> } />
+              <Redirect to="/dash" />  :
+              <RegisterForm handleRegisterSubmit={this.handleRegisterSubmit} /> 
+             } />
           <Route exact path="/login" render={() => (this.state.auth) ? 
             <Redirect to="/dash" /> :
-            <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> } />
+            <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> 
+            } />   
           <p>loading from app.js</p>
         </div>
       </Router>
