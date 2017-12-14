@@ -23,6 +23,7 @@ class Dashboard extends Component {
 			petsLoaded: false,
 			editPath: ''
 		}
+		
 	}
 
 	componentDidMount(){
@@ -64,25 +65,7 @@ class Dashboard extends Component {
 		}).catch(err => console.log(err))
 	}
 
-	editPet(e, data) {
-		e.preventDefault()
-		console.log('pet edited')
-		fetch(`/pets/${data.id}`, {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-				token: Auth.getToken(),
-				'Authorization': `Token ${Auth.getToken()}`,
-			},
-			body: JSON.stringify({
-				pet: data,
-			}),
-		}).then(res => res.json())
-		.then(res => {
-			console.log(res, 'this is the res from editPet')
-			this.getUserPets()
-		}).catch(err => console.log(err))
-	}
+
 
 	render() {
 		return(
