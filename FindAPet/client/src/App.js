@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import './App.css';
 
 //import from react router
-import {BrowserRouter as Router, Link, Redirect, Route} form 'react-router-dom';
+import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 
 //import module and components
 import Auth from './modules/Auth'
 import RegisterForm from './components/RegisterForm'
-import LoginForm form './components/LoginForm'
+import LoginForm from './components/LoginForm'
 import Dashboard from './components/Dashboard'
 import PetList from './components/PetList'
 

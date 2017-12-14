@@ -54,6 +54,7 @@ class Dashboard extends Component {
 		return(
 			<div className="dash">
 				<AddPetForm addPet={this.addPet} />
+				{console.log(this)}
 				{(this.state.petsLoaded) ?
 				this.state.myPets.map(pet => {
 					return <h1 key={pet.id}>{pet.name}</h1>
