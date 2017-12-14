@@ -3,17 +3,20 @@ import React, { Component } from 'react'
 import Auth from '../modules/Auth'
 
 class EditPetForm extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
-			name: '',
-			post_type: '',
-			animal: '',
-			breed: '',
-			age: null,
-			picture: '',
-			description: '',
-			foster_length: '',
+			pet:{
+				name: props.pet ? props.pet.name : '',
+				post_type: props.pet ? props.pet.post_type : '',
+				animal: props.pet ? props.pet.animal : '',
+				breed: props.pet ? props.pet.breed : '',
+				age: props.pet ? props.pet.age : '',
+				picture: props.pet ? props.pet.picture : '',
+				description: props.pet ? props.pet.description : '',
+				foster_length: props.pet ? props.pet.foster_length : '',
+				id: props.pet ? props.pet.id : '',
+			},
 		}
 		this.handleChange = this.handleChange.bind(this)
 	}
