@@ -22,6 +22,7 @@ class PetList extends Component {
 	}
 
 	renderPets() {
+		console.log(this, 'this value from renderPets')
 		return this.state.petList.map(pet => {
 			return (
 				<div className="pet" key={pet.id}>

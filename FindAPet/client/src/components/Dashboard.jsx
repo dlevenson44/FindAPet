@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 import Auth from '../modules/Auth'
 import AddPetForm from './AddPetForm'
 
@@ -58,7 +58,7 @@ class Dashboard extends Component {
 				{console.log(this, 'is the this value from render')}				
 				{(this.state.petsLoaded) 
 					? this.state.myPets.map(pet => {
-					return <h1 key={pet.id}>{pet.name}</h1>
+					return (<h1 key={pet.id}>{pet.name}</h1>)
 				}) 
 					: <p>Loading.....</p>}
 			</div>

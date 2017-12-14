@@ -18,7 +18,6 @@ class App extends Component {
     super()
     this.state = {
       auth: Auth.isUserAuthenticated(),
-      //shouldGoToDash: false,
     }
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this)
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
@@ -41,7 +40,6 @@ class App extends Component {
       console.log('new user created')
       this.setState({
         auth: Auth.isUserAuthenticated(),
-        //shouldGoToDash: true,
       })
     }).catch(err => { console.log(err) })
   }
@@ -60,7 +58,6 @@ class App extends Component {
       console.log('user logged in')
       this.setState({
         auth: Auth.isUserAuthenticated(),
-        //shouldGoToDash: true,
       })
     }).catch(err=> console.log(err))
   }
@@ -81,10 +78,6 @@ class App extends Component {
     }).catch(err=> console.log(err))
   }
 
-  //Below line taken out from line 103
-  // <Route exactpath="/dash" render={() => <Dashboard /> } />
-
-
   render() {
     return (
       <Router>
@@ -98,11 +91,11 @@ class App extends Component {
           </div>
           <Route exact path="/pets" render={() => <PetList /> } />
           <Route exact path="/register" render={() => (this.state.auth) ?
-              <Redirect to="/dash" />  :
+              <Redirect to="/profile" />  :
               <RegisterForm handleRegisterSubmit={this.handleRegisterSubmit} /> 
             } />
           <Route exact path="/login" render={() => (this.state.auth) ? 
-            <Redirect to="/dash" /> :
+            <Redirect to="/profile" /> :
             <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> 
             } />
           <Route exact path="/profile" render={() => <Dashboard />} />
