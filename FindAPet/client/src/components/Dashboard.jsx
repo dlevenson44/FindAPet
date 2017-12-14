@@ -27,7 +27,6 @@ class Dashboard extends Component {
 			}
 		}).then(res => res.json())
 		.then(res => {
-			console.log(this, 'is this from get userpets')
 			this.setState({
 				myPets: res.pets,
 				petsLoaded: true,
@@ -36,6 +35,7 @@ class Dashboard extends Component {
 	}
 
 	addPet(e, data) {
+		console.log('pet added')
 		fetch('/pets', {
 			method: 'POST',
 			headers: {
@@ -54,6 +54,8 @@ class Dashboard extends Component {
 	}
 
 	editPet(e, data) {
+		e.preventDefault()
+		console.log('pet edited')
 		fetch(`/pets/${data.id}`, {
 			method: 'PUT',
 			headers: {
@@ -76,15 +78,10 @@ class Dashboard extends Component {
 			<Router>
 				<div className="dash">
 					<AddPetForm addPet={this.addPet} />
-					<h1>click on pet name to edit</h1>
-					{console.log(this, 'is the this value from render')}				
+					<h1>click on pet name to edit</h1>		
 					{(this.state.petsLoaded) 
 						? this.state.myPets.map(pet => {
 							var editPath=`/pets/${pet.id}/edit`
-							// this.state.editPath=editPath
-
-							console.log(editPath)
-							console.log(this, 'this is the this value from dashboard l 85')
 						return (
 							 
 								<Link to={editPath} key={pet.id}>{pet.name}</Link>
@@ -92,7 +89,7 @@ class Dashboard extends Component {
 					}) 
 						: <p>Loading.....</p>
 					}						
-	<Route path="/pets/:id/edit" render={() => <EditPetForm />} />					
+					<Route exact path="/pets/:id/edit" render={() => <EditPetForm />} />					
 				</div>
 			</Router>
 		)

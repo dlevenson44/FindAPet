@@ -22,7 +22,28 @@ class PetsController < ApiController
 		else
 			render json: { message: "couldn't create pet" }
 		end
-	end	
+	end
+
+	def edit
+		pet = Pet.find(params[:id])
+	end
+
+	def update
+		pet = Pet.find(params[:id])
+		if pet.update(pet_params)
+			render json: {
+				message: 'ok',
+				pet: pet
+			}
+		else
+			render json: { message: "couldn't save changes"}
+		end		
+	end
+
+	def destroy
+		pet = Pet.find(params[:id])
+		pet.delete
+	end
 
 	private
 	def pet_params

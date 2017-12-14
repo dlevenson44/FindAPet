@@ -19,6 +19,7 @@ class EditPetForm extends Component {
 	}
 
 	handleChange(e) {
+		e.preventDefault()
 		const name = e.target.name
 		const val = e.target.value
 		this.setState({
