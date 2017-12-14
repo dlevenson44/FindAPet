@@ -25,9 +25,12 @@ class EditPetForm extends Component {
 		e.preventDefault()
 		const name = e.target.name
 		const val = e.target.value
-		this.setState({
-			[name] : val,
+		let peaches = this.props.pet
+		this.setState((prevState, props) => {
+			const updatedPet = Object.assign({}, peaches, {[name]: val})
+			return {pet updatedPet}
 		})
+		console.log("handleupdatechange")
 	}
 
 	render() {
