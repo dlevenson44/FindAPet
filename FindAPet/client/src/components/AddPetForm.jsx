@@ -28,7 +28,7 @@ class AddPetForm extends Component {
 
 	render() {
 		return(
-			<div className="form">
+			<div className="add-form">
 				<form onSubmit={(e) => this.props.addPet(e, this.state)} >
 					<input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleChange} />
 					<input type="text" name="post_type" placeholder="Adoption or Foster?" value={this.state.post_type} onChange={this.handleChange} />
