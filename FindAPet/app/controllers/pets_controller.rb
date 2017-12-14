@@ -13,7 +13,7 @@ class PetsController < ApiController
 
 	def create
 		pet = Pet.new(pet_params)
-		pet.user = current_pet
+		pet.user = current_user
 		if pet.save
 			render json: {
 				message: 'ok',
