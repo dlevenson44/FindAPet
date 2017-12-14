@@ -25,6 +25,7 @@ class Dashboard extends Component {
 			}
 		}).then(res => res.json())
 		.then(res => {
+			console.log(res, 'this is res from getUserPEts')
 			this.setState({
 				myPets: res.pets,
 				petsLoaded: true,
@@ -45,7 +46,7 @@ class Dashboard extends Component {
 			}),
 		}).then(res => res.json())
 		.then(res => {
-			console.log(res)
+			console.log(res, 'this is the res from addPet')
 			this.getUserPets()
 		}).catch(err => console.log(err))
 	}
@@ -54,7 +55,7 @@ class Dashboard extends Component {
 		return(
 			<div className="dash">
 				<AddPetForm addPet={this.addPet} />
-				{console.log(this)}
+				{console.log(this, 'is the this value from render')}				
 				{(this.state.petsLoaded) ?
 				this.state.myPets.map(pet => {
 					return <h1 key={pet.id}>{pet.name}</h1>
