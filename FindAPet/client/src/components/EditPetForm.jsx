@@ -28,7 +28,7 @@ class EditPetForm extends Component {
 		let peaches = this.props.pet
 		this.setState((prevState, props) => {
 			const updatedPet = Object.assign({}, peaches, {[name]: val})
-			return {pet updatedPet}
+			return {pet: updatedPet}
 		})
 		console.log("handleupdatechange")
 	}
