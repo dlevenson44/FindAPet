@@ -25,7 +25,8 @@ class EditPetForm extends Component {
 		e.preventDefault()
 		const name = e.target.name
 		const val = e.target.value
-		let peaches = this.props.pet
+		console.log(this)
+		let peaches = this.props.state.myPets
 		this.setState((prevState, props) => {
 			const updatedPet = Object.assign({}, peaches, {[name]: val})
 			return {pet: updatedPet}
@@ -36,15 +37,15 @@ class EditPetForm extends Component {
 	render() {
 		return(
 			<div className="edit-form">
-				<form onSubmit={(e) => this.props.editPet(e, this.state.pet)} >
-					<input type="text" name={'name'} onChange={(e => this.handleUpdateChange(e))} value={this.state.pet.name} />
-					<input type="text" name={'post_type'} onChange={(e => this.handleUpdateChange(e))} value={this.state.post_type} />
-					<input type="text" name={'animal'} onChange={(e => this.handleUpdateChange(e))} value={this.state.petanimal} />
-					<input type="text" name={'breed'} onChange={(e => this.handleUpdateChange(e))} value={this.state.pet.breed} />
-					<input type="number" name={'age'} onChange={(e => this.handleUpdateChange(e))} value={this.state.pet.age} />
-					<input type="text" name={'picture'} onChange={(e => this.handleUpdateChange(e))} value={this.state.pet.picture} />
-					<input type="text" name={'description'} onChange={(e => this.handleUpdateChange(e))} value={this.state.pet.description} />
-					<input type="text" name={'foster_length'} onChange={(e => this.handleUpdateChange(e))} value={this.state.pet.foster_length} />
+				<form onSubmit={(e) => this.props.editPet(e, this.props.state.myPets)} >
+					<input type="text" name={'name'} onChange={(e => this.handleUpdateChange(e))} value={this.props.state.myPets.name} />
+					<input type="text" name={'post_type'} onChange={(e => this.handleUpdateChange(e))} value={this.props.state.myPets.post_type} />
+					<input type="text" name={'animal'} onChange={(e => this.handleUpdateChange(e))} value={this.props.state.myPets.animal} />
+					<input type="text" name={'breed'} onChange={(e => this.handleUpdateChange(e))} value={this.props.state.myPets.breed} />
+					<input type="number" name={'age'} onChange={(e => this.handleUpdateChange(e))} value={this.props.state.myPets.age} />
+					<input type="text" name={'picture'} onChange={(e => this.handleUpdateChange(e))} value={this.props.state.myPets.picture} />
+					<input type="text" name={'description'} onChange={(e => this.handleUpdateChange(e))} value={this.props.state.myPets.description} />
+					<input type="text" name={'foster_length'} onChange={(e => this.handleUpdateChange(e))} value={this.props.state.myPets.foster_length} />
 					<input type="submit" value="Edit Post" />						
 				</form>
 			</div>
