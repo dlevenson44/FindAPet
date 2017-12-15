@@ -22,6 +22,23 @@ class EditPetForm extends Component {
 		this.handleUpdateChange = this.handleUpdateChange.bind(this)
 		this.editPet = this.editPet.bind(this)
 		this.deletePet = this.deletePet.bind(this)
+		this.getUserPets = this.getUserPets.bind(this)
+	}
+
+	getUserPets() {
+		fetch('/profile', {
+			method: 'GET',
+			headers: {
+				token: Auth.getToken(),
+				'Authorization': `Token ${Auth.getToken()}`,
+			}
+		}).then(res => res.json())
+		.then(res => {
+			this.setState({
+				myPets: res.pets,
+				petsLoaded: true,
+			})
+		}).catch(err => console.log(err))
 	}
 
 	editPet(e, data) {
@@ -52,7 +69,7 @@ class EditPetForm extends Component {
 			this.setState({
 				pet: res.data
 			})
-			this.props.getUserPets()
+			this.getUserPets()
 		}).catch(err => console.log(err))
 	}
 
@@ -71,7 +88,7 @@ class EditPetForm extends Component {
 			this.setState({
 				petStatus: 'delete'
 			})
-			this.props.getUserPets()
+			this.getUserPets()
 		})
 	}
 
