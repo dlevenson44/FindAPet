@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 
 class PetList extends Component {
 	constructor() {
@@ -24,9 +25,11 @@ class PetList extends Component {
 	renderPets() {
 		console.log(this, 'this value from renderPets')
 		return this.state.petList.map(pet => {
+			var petPath = `pets/${pet.id}`
+			console.log(petPath)
 			return (
 				<div className="pet" key={pet.id}>
-					<h2>{pet.name}</h2>
+					<Link to={petPath} key={pet.id}>{pet.name}</Link>
 					<p>{pet.description}</p>
 				</div>
 			)
