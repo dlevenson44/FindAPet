@@ -23,7 +23,7 @@ class Dashboard extends Component {
 			petsLoaded: false,
 			editPath: ''
 		}
-
+		this.getUserPets = this.getUserPets.bind(this)
 	}
 
 	componentDidMount(){
@@ -85,7 +85,8 @@ class Dashboard extends Component {
 					}						
 					<Route exact path="/pets/:id/edit" render={(props) => <EditPetForm
 						{...props}
-					 pet={this.state.pet} state={this.state}/>} editPet={this.editPet}/>					
+					 pet={this.state.pet} state={this.state}/>} editPet={this.editPet}
+					 getUserPets={this.getUserPets}/>					
 						
 				</div>
 			</Router>

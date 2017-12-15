@@ -6,6 +6,7 @@ class EditPetForm extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			petStatus: '',
 			pet:{
 				name: props.pet ? props.pet.name : '',
 				post_type: props.pet ? props.pet.post_type : '',
@@ -51,7 +52,7 @@ class EditPetForm extends Component {
 			this.setState({
 				pet: res.data
 			})
-			this.getUserPets()
+			this.props.getUserPets()
 		}).catch(err => console.log(err))
 	}
 
@@ -65,9 +66,12 @@ class EditPetForm extends Component {
 				token: Auth.getToken(),
 				'Authorization': `Token ${Auth.getToken()}`,
 			},
-		}).then(res => res.json())
+		})
 		.then(res => {
-			this.getUserPets()
+			this.setState({
+				petStatus: 'delete'
+			})
+			this.props.getUserPets()
 		})
 	}
 
