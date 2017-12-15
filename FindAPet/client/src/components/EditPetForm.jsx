@@ -20,6 +20,7 @@ class EditPetForm extends Component {
 		}
 		this.handleUpdateChange = this.handleUpdateChange.bind(this)
 		this.editPet = this.editPet.bind(this)
+		this.deletePet = this.deletePet.bind(this)
 	}
 
 	editPet(e, data) {
@@ -56,8 +57,8 @@ class EditPetForm extends Component {
 
 	deletePet(id) {
 		console.log('post deleted')
-		let id =this.props.match.params.id
-		fetch(`/pets/${id}`, {
+		let deleteId =this.props.match.params.id
+		fetch(`/pets/${deleteId}`, {
 			method: 'DELETE',
 		}).then(res => res.json())
 		.then(res => {
@@ -93,6 +94,9 @@ class EditPetForm extends Component {
 					<input type="text" name={'description'} onChange={(e => this.handleUpdateChange(e))} value={this.props.state.myPets.description} />
 					<input type="text" name={'foster_length'} onChange={(e => this.handleUpdateChange(e))} value={this.props.state.myPets.foster_length} />
 					<input type="submit" value="Edit Post" />						
+				</form>
+				<form className="delete-form" onSubmit={(e) => (e.preventDefault(), this.deletePet(this.props.match.params.id))}>
+					<button>Delete Post</button>
 				</form>
 			</div>
 			)
