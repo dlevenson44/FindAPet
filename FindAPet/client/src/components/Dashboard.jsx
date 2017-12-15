@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 import Auth from '../modules/Auth'
 import AddPetForm from './AddPetForm'
 import EditPetForm from './EditPetForm'
+import SinglePet from './SinglePet'
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -74,10 +75,11 @@ class Dashboard extends Component {
 					<AddPetForm addPet={this.addPet} />
 					<h1>click on pet name to edit</h1>		
 					{(this.state.petsLoaded) 
-						? this.state.myPets.map(pet => {
+						? this.state.myPets.map((pet, index) => {
 							var editPath=`/pets/${pet.id}/edit`
 						return (
-							 
+							 //use an onclick referring to index within pet array and pass that down as prop							 
+							 //pass down mypets of that index value
 								<Link to={editPath} key={pet.id}>{pet.name}</Link>
 							)
 					}) 
@@ -85,8 +87,9 @@ class Dashboard extends Component {
 					}						
 					<Route exact path="/pets/:id/edit" render={(props) => <EditPetForm
 						{...props}
-					 pet={this.state.pet} state={this.state}/>} editPet={this.editPet}
-					 getUserPets={this.getUserPets}/>					
+					 pet={this.state.pet} state={this.state} getUserPets={this.getUserPets} />}
+					 />	
+					 
 						
 				</div>
 			</Router>

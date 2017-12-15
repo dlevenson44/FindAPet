@@ -15,11 +15,24 @@ import EditPetForm from './components/EditPetForm'
 import SinglePet from './components/SinglePet'
 
 
+
 class App extends Component {
   constructor() {
     super()
     this.state = {
       auth: Auth.isUserAuthenticated(),
+      // pet:{
+      //   name: props.pet ? props.pet.name : '',
+      //   post_type: props.pet ? props.pet.post_type : '',
+      //   animal: props.pet ? props.pet.animal : '',
+      //   breed: props.pet ? props.pet.breed : '',
+      //   age: props.pet ? props.pet.age : '',
+      //   picture: props.pet ? props.pet.picture : '',
+      //   description: props.pet ? props.pet.description : '',
+      //   foster_length: props.pet ? props.pet.foster_length : '',
+      //   id: props.pet ? props.pet.id : '',
+      // },
+      myPets: null,
     }
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this)
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
@@ -64,6 +77,7 @@ class App extends Component {
     }).catch(err=> console.log(err))
   }
 
+
   handleLogout() {
     fetch('/logout', {
       method: 'DELETE',
@@ -102,7 +116,8 @@ class App extends Component {
             <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> 
             } />
           <Route exact path="/profile" render={() => <Dashboard />} />
-          <Route exact path="/pets/:id" render={(props) => <SinglePet />} />
+          <Route exact path="/pets/:id" render={() => <SinglePet pet={this.state.pet} state={this.state} />} />        
+          
 
            
 

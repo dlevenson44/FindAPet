@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 
+
 class PetList extends Component {
 	constructor() {
 		super()
 		this.state = {
+			//all pets
 			petList: null,
+			//all pets list loaded
 			petListLoaded: false,
+			//the pet that was clicked
+			selectedPet: {},
 		}
 	}	
 
@@ -22,6 +27,12 @@ class PetList extends Component {
 		}).catch(err => console.log(err))
 	}
 
+	setSelectedPet(pet) {
+		this.setState({
+			selectedPet: pet,
+		})
+	}
+
 	renderPets() {
 		console.log(this, 'this value from renderPets')
 		return this.state.petList.map(pet => {
@@ -34,6 +45,11 @@ class PetList extends Component {
 				</div>
 			)
 		})
+	}
+
+	renderSinglePet() {
+		console.log(this, 'this is the velue from renderSinglePet')
+		// return this.state.
 	}
 
 	render() {
