@@ -11,7 +11,7 @@ class PetList extends Component {
 			//all pets list loaded
 			petListLoaded: false,
 			//the pet that was clicked
-			selectedPet: {},
+			chosenPet: {},
 		}
 	}	
 
@@ -27,11 +27,22 @@ class PetList extends Component {
 		}).catch(err => console.log(err))
 	}
 
-	setSelectedPet(pet) {
+	setSelectedPetId(petId) {
 		this.setState({
-			selectedPet: pet,
+			chosenPet: pet,
+		})
+		this.setSelectedPet(pet)
+	}
+
+	setSelectedPet(pet) {
+		const petId = this.state.petList.find(pet => {
+			return pet.id === petId 
+		}) || {}
+		this.setState({
+			selected: pet
 		})
 	}
+	
 
 	renderPets() {
 		console.log(this, 'this value from renderPets')
