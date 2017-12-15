@@ -60,6 +60,11 @@ class EditPetForm extends Component {
 		let deleteId =this.props.match.params.id
 		fetch(`/pets/${deleteId}`, {
 			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				token: Auth.getToken(),
+				'Authorization': `Token ${Auth.getToken()}`,
+			},
 		}).then(res => res.json())
 		.then(res => {
 			this.getUserPets()
