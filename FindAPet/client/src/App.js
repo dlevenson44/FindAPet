@@ -11,7 +11,6 @@ import RegisterForm from './components/RegisterForm'
 import LoginForm from './components/LoginForm'
 import Dashboard from './components/Dashboard'
 import PetList from './components/PetList'
-import EditPetForm from './components/EditPetForm'
 import SinglePet from './components/SinglePet'
 
 
@@ -29,8 +28,8 @@ class App extends Component {
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this)
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
-    this.getAllPets = this.getAllPets.bind(this)
-    this.petListStatus = this.petListStatus.bind(this)
+    // this.getAllPets = this.getAllPets.bind(this)
+    // this.petListStatus = this.petListStatus.bind(this)
     console.log(this, 'this is from constructor in App.js')
     
   }
@@ -90,39 +89,33 @@ class App extends Component {
     }).catch(err=> console.log(err))
   }
 
-  componentDidMount(){
-    this.getAllPets()
-  }
+  // componentDidMount(){
+  //   this.getAllPets()
+  // }
 
-  getAllPets() {
-    fetch('/pets', {
-      method: 'GET',
-      headers: {
-        token: Auth.getToken(),
-        'Authorization': `Token ${Auth.getToken()}`,
-      }
-    }).then(res => res.json())
-    .then(res => {
-      this.setState({
-        petList: res.pets,
-        petsLoaded: true,
-        currentStatus: 'list'
-      })
-    }).catch(err => console.log(err))
-  }
+  // getAllPets() {
+  //   fetch('/pets', {
+  //     method: 'GET',
+  //     headers: {
+  //       token: Auth.getToken(),
+  //       'Authorization': `Token ${Auth.getToken()}`,
+  //     }
+  //   }).then(res => res.json())
+  //   .then(res => {
+  //     this.setState({
+  //       petList: res.pets,
+  //       petsLoaded: true,
+  //       currentStatus: 'list'
+  //     })
+  //   }).catch(err => console.log(err))
+  // }
 
-  petListStatus() {
-    this.setState({
-      currentStatus: 'list'
-    })
-  }
+  // petListStatus() {
+  //   this.setState({
+  //     currentStatus: 'list'
+  //   })
+  // }
 
-  renderSwitch() {
-    switch(this.state.currentStatus) {
-      case: 'list':
-        return 
-    }
-  }
 
   render() {
     return (
@@ -145,7 +138,7 @@ class App extends Component {
             } />
           <Route exact path="/profile" render={() => <Dashboard />} />
           <Route exact path="/pets" render={() => <PetList getAllPets={this.getAllPets} petList={this.state.petList} petListStatus={this.petListStatus} petsLoaded={this.state.petsLoaded} />} />
-          
+
           <Route exact path="/pets/:id" render={() => <SinglePet petList={this.state.pet} getAllPets={this.getAllPets} petList={this.state.petList}/>} />        
           
 
