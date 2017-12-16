@@ -106,6 +106,7 @@ class App extends Component {
       this.setState({
         petList: res.pets,
         petsLoaded: true,
+        currentStatus: 'list'
       })
     }).catch(err => console.log(err))
   }
@@ -116,7 +117,12 @@ class App extends Component {
     })
   }
 
-  // currendId={props.match.params.id
+  renderSwitch() {
+    switch(this.state.currentStatus) {
+      case: 'list':
+        return 
+    }
+  }
 
   render() {
     return (
@@ -129,7 +135,6 @@ class App extends Component {
             <Link to="/pets">Pets</Link>
             <button onClick={this.handleLogout}>Logout</button>
           </div>
-          <Route exact path="/pets" render={() => <PetList getAllPets={this.getAllPets} petList={this.state.petList} petsLoaded={this.state.petsLoaded} chosenPet={this.state.chosenPet} />} />
           <Route exact path="/register" render={() => (this.state.auth) ?
               <Redirect to="/profile" />  :
               <RegisterForm handleRegisterSubmit={this.handleRegisterSubmit} /> 
@@ -139,6 +144,8 @@ class App extends Component {
             <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> 
             } />
           <Route exact path="/profile" render={() => <Dashboard />} />
+          <Route exact path="/pets" render={() => <PetList getAllPets={this.getAllPets} petList={this.state.petList} petListStatus={this.petListStatus} petsLoaded={this.state.petsLoaded} />} />
+          
           <Route exact path="/pets/:id" render={() => <SinglePet petList={this.state.pet} getAllPets={this.getAllPets} petList={this.state.petList}/>} />        
           
 
