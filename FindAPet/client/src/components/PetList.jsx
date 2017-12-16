@@ -3,35 +3,17 @@ import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 
 
 class PetList extends Component {
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.state = {
-			//all pets
-			petList: null,
-			//all pets list loaded
-			petListLoaded: false,
-			//the pet that was clicked
-			chosenPet: {},
 		}
 	}	
 
-	componentDidMount() {
-		fetch('/pets')
-		.then(res => res.json())
-		.then(res => {
-			console.log(res)
-			this.setState({
-				petList: res.pets,
-				petListLoaded: true,
-			})
-		}).catch(err => console.log(err))
-	}
-
 	setSelectedPetId(petId) {
 		this.setState({
-			chosenPet: pet,
+			chosenPet: petId,
 		})
-		this.setSelectedPet(pet)
+		this.setSelectedPet(petId)
 	}
 
 	setSelectedPet(pet) {
@@ -46,7 +28,7 @@ class PetList extends Component {
 
 	renderPets() {
 		console.log(this, 'this value from renderPets')
-		return this.state.petList.map(pet => {
+		return this.props.petList.map(pet => {
 			var petPath = `pets/${pet.id}`
 			console.log(petPath)
 			return (
@@ -66,7 +48,7 @@ class PetList extends Component {
 	render() {
 		return(
 			<div className="pet-list">
-				{(this.state.petListLoaded)
+				{(this.props.petsLoaded)
 				? this.renderPets() :
 				<p>Loading Pets...</p>}
 			</div>

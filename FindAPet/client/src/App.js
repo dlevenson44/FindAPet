@@ -21,22 +21,18 @@ class App extends Component {
     super()
     this.state = {
       auth: Auth.isUserAuthenticated(),
-      // pet:{
-      //   name: props.pet ? props.pet.name : '',
-      //   post_type: props.pet ? props.pet.post_type : '',
-      //   animal: props.pet ? props.pet.animal : '',
-      //   breed: props.pet ? props.pet.breed : '',
-      //   age: props.pet ? props.pet.age : '',
-      //   picture: props.pet ? props.pet.picture : '',
-      //   description: props.pet ? props.pet.description : '',
-      //   foster_length: props.pet ? props.pet.foster_length : '',
-      //   id: props.pet ? props.pet.id : '',
-      // },
+      petsLoaded: false,
+      chosenPet: {},
       myPets: null,
+      currentStatus: '',
     }
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this)
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
+    this.getAllPets = this.getAllPets.bind(this)
+    this.petListStatus = this.petListStatus.bind(this)
+    console.log(this, 'this is from constructor in App.js')
+    
   }
 
   handleRegisterSubmit(e, data) {
@@ -94,8 +90,35 @@ class App extends Component {
     }).catch(err=> console.log(err))
   }
 
+  componentDidMount(){
+    this.getAllPets()
+  }
+
+  getAllPets() {
+    fetch('/pets', {
+      method: 'GET',
+      headers: {
+        token: Auth.getToken(),
+        'Authorization': `Token ${Auth.getToken()}`,
+      }
+    }).then(res => res.json())
+    .then(res => {
+      this.setState({
+        petList: res.pets,
+        petsLoaded: true,
+      })
+    }).catch(err => console.log(err))
+  }
+
+  petListStatus() {
+    this.setState({
+      currentStatus: 'list'
+    })
+  }
+
+  // currendId={props.match.params.id
+
   render() {
-    
     return (
       <Router>
         <div className="App">
@@ -104,9 +127,9 @@ class App extends Component {
             <Link to="/register">Register</Link>
             <Link to="/profile">Dash</Link>
             <Link to="/pets">Pets</Link>
-            <span onClick={this.handleLogout}>Logout</span>
+            <button onClick={this.handleLogout}>Logout</button>
           </div>
-          <Route exact path="/pets" render={() => <PetList /> } />
+          <Route exact path="/pets" render={() => <PetList getAllPets={this.getAllPets} petList={this.state.petList} petsLoaded={this.state.petsLoaded} chosenPet={this.state.chosenPet} />} />
           <Route exact path="/register" render={() => (this.state.auth) ?
               <Redirect to="/profile" />  :
               <RegisterForm handleRegisterSubmit={this.handleRegisterSubmit} /> 
@@ -116,7 +139,7 @@ class App extends Component {
             <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> 
             } />
           <Route exact path="/profile" render={() => <Dashboard />} />
-          <Route exact path="/pets/:id" render={() => <SinglePet pet={this.state.pet} state={this.state} />} />        
+          <Route exact path="/pets/:id" render={() => <SinglePet petList={this.state.pet} getAllPets={this.getAllPets} petList={this.state.petList}/>} />        
           
 
            

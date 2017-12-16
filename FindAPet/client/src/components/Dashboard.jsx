@@ -20,8 +20,8 @@ class Dashboard extends Component {
 				foster_length: props.pet ? props.pet.foster_length : '',
 				id: props.pet ? props.pet.id : '',
 			},
-			myPets: null,
-			petsLoaded: false,
+			// myPets: null,
+			// petsLoaded: false,
 			editPath: ''
 		}
 		this.getUserPets = this.getUserPets.bind(this)
@@ -62,7 +62,7 @@ class Dashboard extends Component {
 		}).then(res => res.json())
 		.then(res => {
 			console.log(res, 'this is the res from addPet')
-			this.getUserPets()
+			this.props.getUserPets()
 		}).catch(err => console.log(err))
 	}
 
@@ -87,7 +87,7 @@ class Dashboard extends Component {
 					}						
 					<Route exact path="/pets/:id/edit" render={(props) => <EditPetForm
 						{...props}
-					 pet={this.state.pet} state={this.state} getUserPets={this.getUserPets} />}
+					 pet={this.state.pet} state={this.state} getUserPets={this.props.getUserPets} />}
 					 />	
 					 
 						
