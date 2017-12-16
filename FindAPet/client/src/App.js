@@ -20,15 +20,19 @@ class App extends Component {
     super()
     this.state = {
       auth: Auth.isUserAuthenticated(),
-      petsLoaded: false,
-      chosenPet: {},
-      myPets: null,
+      currentId: null,
       currentStatus: '',
+      mountStarter: '',
+      petsLoaded: false,
+      petList: null,
+      currentPet: null,
+      fireRedirect: false,
+      redirectPath: null,
     }
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this)
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
-    // this.getAllPets = this.getAllPets.bind(this)
+    this.getAllPets = this.getAllPets.bind(this)
     // this.petListStatus = this.petListStatus.bind(this)
     console.log(this, 'this is from constructor in App.js')
     
@@ -89,32 +93,42 @@ class App extends Component {
     }).catch(err=> console.log(err))
   }
 
-  // componentDidMount(){
-  //   this.getAllPets()
-  // }
+  componentDidMount(){
+    this.getAllPets()
+  }
 
-  // getAllPets() {
-  //   fetch('/pets', {
-  //     method: 'GET',
-  //     headers: {
-  //       token: Auth.getToken(),
-  //       'Authorization': `Token ${Auth.getToken()}`,
-  //     }
-  //   }).then(res => res.json())
-  //   .then(res => {
-  //     this.setState({
-  //       petList: res.pets,
-  //       petsLoaded: true,
-  //       currentStatus: 'list'
-  //     })
-  //   }).catch(err => console.log(err))
-  // }
+  getAllPets() {
+    if (this.state.mountStarter === '') {
+      fetch('/pets', {
+        method: 'GET',
+        headers: {
+          token: Auth.getToken(),
+          'Authorization': `Token ${Auth.getToken()}`,
+        }
+      }).then(res => res.json())
+      .then(res => {
+        this.setState({
+          petList: res.pets,
+          petsLoaded: true,
+          currentStatus: 'list',
+          mountStarter: 'list'
+        })
+      }).catch(err => console.log(err))
+    } else if (this.state.mountStarter === 'list') {
+      fetch(`/pets/${this.state.currentId}`)
+      .then(res => res.json())
+      .then(res => {
+        this.setState({
+          currentPet: res.data.pet,
+          petsLoaded: true,
+          currentStatus: 'show',
+          mountStarter: 'show'
+        })
+      }).catch(err => console.log(err))
+    }
+  }
 
-  // petListStatus() {
-  //   this.setState({
-  //     currentStatus: 'list'
-  //   })
-  // }
+
 
 
   render() {
@@ -139,7 +153,7 @@ class App extends Component {
           <Route exact path="/profile" render={() => <Dashboard />} />
           <Route exact path="/pets" render={() => <PetList getAllPets={this.getAllPets} petList={this.state.petList} petListStatus={this.petListStatus} petsLoaded={this.state.petsLoaded} />} />
 
-          <Route exact path="/pets/:id" render={() => <SinglePet petList={this.state.pet} getAllPets={this.getAllPets} petList={this.state.petList}/>} />        
+          <Route exact path="/pets/:id" render={() => <SinglePet currentPet={this.state.currentPet} getAllPets={this.getAllPets} petList={this.state.petList}/>} />        
           
 
            

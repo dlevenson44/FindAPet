@@ -16,28 +16,28 @@ class SinglePet extends Component {
 				id: props.pet ? props.pet.id : '',
 			},			
 		}
-		this.fetchSinglePet = this.fetchSinglePet.bind(this)
+		//this.fetchSinglePet = this.fetchSinglePet.bind(this)
 	}
 
-	componentDidMount() {
-		this.fetchSinglePet()
-	}
+	// componentDidMount() {
+	// 	this.fetchSinglePet()
+	// }
 
 
-	fetchSinglePet() {
-		this.props.peList.map(pet => {
-			
-		})
-		// fetch(`/pets/${id}`)
-		fetch('/pets/:id')
-		.then(res => res.json())
-		.then(res => {
-			console.log(res, 'this is res from singlepet')
-			this.setState({
-				pet: res
-			})
-		})	
-	}
+	// fetchSinglePet() {
+	// 	this.props.peList.map(pet => {
+
+	// 	})
+	// 	// fetch(`/pets/${id}`)
+	// 	fetch('/pets/:id')
+	// 	.then(res => res.json())
+	// 	.then(res => {
+	// 		console.log(res, 'this is res from singlepet')
+	// 		this.setState({
+	// 			pet: res
+	// 		})
+	// 	})	
+	// }
 
 	render() {
 		console.log(this, 'this is this from singlepet')

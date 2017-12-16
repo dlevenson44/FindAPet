@@ -11,37 +11,19 @@ class PetController extends Component {
 			currentPage: props.currentPage,
 			currentId: props.currentId || null,
 			petsLoaded: false,
-			myPets: null,
+			petList: null,
 			currentPet: null,
 			fireRedirect: false,
 			redirectPath: null,
 			currentStatus: ''
 		}
-	}
-
-	componentDidMount() {
-		if (this.state.mountStarter === '') {
-		    fetch('/pets', {
-		      method: 'GET',
-		      headers: {
-		        token: Auth.getToken(),
-		        'Authorization': `Token ${Auth.getToken()}`,
-		      }
-		    }).then(res => res.json())
-		    .then(res => {
-		      this.setState({
-		        petList: res.pets,
-		        petsLoaded: true,
-		        currentStatus: 'list',
-		      })
-		    }).catch(err => console.log(err)			
-		}
+		this.getAllPets = this.getAllPets.bind(this)
 	}
 
 	renderDecider() {
 		switch(this.state.currentStatus) {
 			case 'list':
-				return <PetList myPets={this.state.myPets} />
+				return <PetList petList={this.state.petList} getAllPets={this.getAllPets} state={this.state}/>
 				break;
 			default:
 				return <Redirect push to="/" />
@@ -54,6 +36,7 @@ class PetController extends Component {
 			<div className="container">
 				{(this.state.petsLoaded) ? this.decideWhichToRender() :
 					<p>loading.......</p>}
+			</div>
 			)
 	}
 
