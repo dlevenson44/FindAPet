@@ -34,8 +34,6 @@ class App extends Component {
     this.handleLogout = this.handleLogout.bind(this)
     this.getAllPets = this.getAllPets.bind(this)
     // this.petListStatus = this.petListStatus.bind(this)
-    console.log(this, 'this is from constructor in App.js')
-    
   }
 
   handleRegisterSubmit(e, data) {
@@ -117,7 +115,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this, 'from app.js render')
     return (
       <Router>
         <div className="App">

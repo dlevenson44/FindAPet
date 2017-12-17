@@ -8,20 +8,22 @@ class SinglePet extends Component  {
 			petsLoaded: true,
 		}
 		this.fetchPet = this.fetchPet.bind(this)
+		this.renderData = this.renderData.bind(this)
 	}
 
 	componentDidMount() {
 		this.fetchPet()
 	}
 
+	componentWillMount() {
+		this.renderData()
+	}
+
 	fetchPet() {
 		let selectedId = this.props.match.params.id
-		console.log(selectedId)
-		console.log(this, 'this is from fetch pet')
 		fetch(`/pets/${selectedId}`)
 	      .then(res => res.json())
 	      .then(res => {
-	      	console.log(res, 'this is the res from fetch pet')
 	        this.setState({
 	          currentPet: res.pet,
 	          petsLoaded: true,
@@ -31,22 +33,22 @@ class SinglePet extends Component  {
 	      }).catch(err => console.log(err))
 	}
 
-	// renderData() {
-	// 	console.log(this, 'this is the this for singlepet')
-	// 	return this.props.petList.map(pet => {
-	// 		if(pet.id === pet.id) {
-	// 		return(
-	// 			<p className={pet.id}> hi </p>
-	// 			)
-	// 	}})			
-	// }
+	renderData() {
+		
+		console.log(this.state.currentPet, 'this from renderData in singlepet')
+		return(
+			<div className="pet-info">
+				<p>{this.state.currentPet.id}</p>
+			</div>
+		)
+	}
 	
 	render(props) {		
 
 		return(
 			<div className="pet-single">
 				{(this.state.petsLoaded) ?
-					<p>data loaded</p> :
+					this.renderData() :
 					<p> loading this stuff</p>}
 			</div>
 		)
