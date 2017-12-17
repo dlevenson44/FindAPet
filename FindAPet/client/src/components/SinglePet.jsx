@@ -29,6 +29,11 @@ class SinglePet extends Component  {
 	      }).catch(err => console.log(err))
 	}
 
+// <img src={require("./home/priyanka/Finalproject/src/components/3.jpg")} alt="cannot display"/>
+
+
+
+
 	renderData() {
 	
 		console.log(this.state.currentPet, 'this from renderData in singlepet')
@@ -43,7 +48,7 @@ class SinglePet extends Component  {
 				<h3>{this.state.currentPet.age}</h3>
 			</div>
 			<div>
-				<img src={this.state.currentPet.picture} />
+				<img src={this.state.currentPet.picture} alt={this.state.currentPet.name} />
 				<p>{this.state.currentPet.description}</p>
 			</div>
 			</div>
