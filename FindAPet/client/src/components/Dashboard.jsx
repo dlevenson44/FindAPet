@@ -59,7 +59,7 @@ class Dashboard extends Component {
 			}),
 		}).then(res => res.json())
 		.then(res => {
-			this.props.getUserPets()
+			this.getUserPets()
 		}).catch(err => console.log(err))
 	}
 
