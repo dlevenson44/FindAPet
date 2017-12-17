@@ -113,17 +113,27 @@ class App extends Component {
   }
 
 
+
+
   render() {
     return (
       <Router>
         <div className="App">
           <div className="nav">
-          {}
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
-            <Link to="/profile">Dash</Link>
-            <Link to="/pets">Pets</Link>
-            <button onClick={this.handleLogout}>Logout</button>
+          {(this.state.auth) ? 
+            (<div className="loggedin-nav">
+              <Link to="/profile">Profile</Link>
+              <button onClick={this.handleLogout}>Logout</button>
+             </div>             
+              ) : (
+              <div className="loggedout-nav">
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+              </div>
+            )}
+            <div className="pets-list">
+              <Link to="/pets">Pets</Link>
+            </div>
           </div>
           <Route exact path="/register" render={() => (this.state.auth) ?
               <Redirect to="/profile" />  :
@@ -134,16 +144,8 @@ class App extends Component {
             <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> 
             } />
           <Route exact path="/profile" render={() => <Dashboard />} />
-          
-
-          <Route exact path="/pets" render={() => <PetList getAllPets={this.getAllPets} petList={this.state.petList} petListStatus={this.petListStatus} petsLoaded={this.state.petsLoaded} />} />
-
-                
+          <Route exact path="/pets" render={() => <PetList getAllPets={this.getAllPets} petList={this.state.petList} petListStatus={this.petListStatus} petsLoaded={this.state.petsLoaded} />} />                
           <Route exact path="/pets/:id" component={SinglePet} />          
-
-           
-
-          
         </div>
       </Router>
     );
