@@ -33,7 +33,6 @@ class App extends Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
     this.handleLogout = this.handleLogout.bind(this)
     this.getAllPets = this.getAllPets.bind(this)
-    // this.petListStatus = this.petListStatus.bind(this)
   }
 
   handleRegisterSubmit(e, data) {
@@ -119,6 +118,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="nav">
+          {}
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
             <Link to="/profile">Dash</Link>

@@ -15,10 +15,6 @@ class SinglePet extends Component  {
 		this.fetchPet()
 	}
 
-	componentWillMount() {
-		this.renderData()
-	}
-
 	fetchPet() {
 		let selectedId = this.props.match.params.id
 		fetch(`/pets/${selectedId}`)
@@ -34,21 +30,32 @@ class SinglePet extends Component  {
 	}
 
 	renderData() {
-		
+	
 		console.log(this.state.currentPet, 'this from renderData in singlepet')
 		return(
-			<div className="pet-info">
-				<p>{this.state.currentPet.id}</p>
+			<div>
+			<div className="pet-basics">
+				<h1>{this.state.currentPet.name}</h1>
+				<h2>{this.state.currentPet.post_type}</h2>
+				<p>{this.state.currentPet.foster_length}</p>
+				<h3>{this.state.currentPet.animal}</h3>
+				<h3>{this.state.currentPet.breed}</h3>
+				<h3>{this.state.currentPet.age}</h3>
+			</div>
+			<div>
+				<img src={this.state.currentPet.picture} />
+				<p>{this.state.currentPet.description}</p>
+			</div>
 			</div>
 		)
 	}
 	
 	render(props) {		
-
+		console.log(this)
 		return(
 			<div className="pet-single">
-				{(this.state.petsLoaded) ?
-					this.renderData() :
+				{(this.state.currentPet) ?
+					this.renderData()  :
 					<p> loading this stuff</p>}
 			</div>
 		)

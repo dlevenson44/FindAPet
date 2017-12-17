@@ -20,8 +20,6 @@ class Dashboard extends Component {
 				foster_length: props.pet ? props.pet.foster_length : '',
 				id: props.pet ? props.pet.id : '',
 			},
-			// myPets: null,
-			// petsLoaded: false,
 			editPath: ''
 		}
 		this.getUserPets = this.getUserPets.bind(this)
@@ -78,8 +76,6 @@ class Dashboard extends Component {
 						? this.state.myPets.map((pet, index) => {
 							var editPath=`/pets/${pet.id}/edit`
 						return (
-							 //use an onclick referring to index within pet array and pass that down as prop							 
-							 //pass down mypets of that index value
 								<Link to={editPath} key={pet.id}>{pet.name}</Link>
 							)
 					}) 
