@@ -24,7 +24,6 @@ class EditPetForm extends Component {
 		this.editPet = this.editPet.bind(this)
 		this.deletePet = this.deletePet.bind(this)
 		this.fetchPet = this.fetchPet.bind(this)
-		this.renderData = this.renderData.bind(this)
 	}
 
 	handleUpdateChange(e) {		
@@ -32,13 +31,26 @@ class EditPetForm extends Component {
 		const name = e.target.name
 		const val = e.target.value
 		console.log(this, 'this is this from updatechange')
-		let peaches = this.state.currentPet
+		let peaches = this.state.pet
 		this.setState((prevState, props) => {
 			const updatedPet = Object.assign({}, prevState, peaches, {[name]: val})
 			return {pet: updatedPet}
 		})
 		console.log(this, 'from end of handle')
 	}
+
+	// handleUpdateChange(e) {		
+	// 	e.preventDefault()
+	// 	console.log(this)
+	// 	const name = e.target.name
+	// 	const val = e.target.value
+	// 	console.log(this, 'this is this from updatechange')
+	// 	let peaches = this.state.pet
+	// 	this.setState((prevState, props) => {
+	// 		const updatedPet = Object.assign({}, peaches, {[name]: val})
+	// 		return {pet: updatedPet}
+	// 	})
+	// 	console.log("handleupdatechange")
 
 	componentDidMount() {
 		this.fetchPet()
@@ -110,18 +122,6 @@ class EditPetForm extends Component {
 		})
 	}
 
-// placeholder={this.props.state.myPets[0].name}
-// placeholder={this.props.state.myPets[0].post_type}
-// placeholder={this.props.state.myPets[0].animal}
-// placeholder={this.props.state.myPets[0].breed}
-// placeholder={this.props.state.myPets[0].age}
-// placeholder={this.props.state.myPets[0].picture}
-// placeholder={this.props.state.myPets[0].description}
-// placeholder={this.props.state.myPets[0].foster_length}
-
-	renderData() {
-
-	}
 
 	render() {
 		console.log(this, 'this is from editpet render')
