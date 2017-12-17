@@ -1,26 +1,59 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 
-const SinglePet = (props) => {
-	return(
-		<div className="pet-single">
-			<div className="inner">
-				<div className="img">
-					<img src={props.pet.picture} alt={props.pet.name} />
-				</div>
-				<div className="info">
-					<h4>{props.pet.name}</h4>
-					<h2>{props.pet.post_type}</h2>
-					<p>{props.foster_length}</p>
-					<h1>{props.pet.animal}</h1>
-					<h1>{props.pet.breed}</h1>
-					<h1>{props.pet.age}</h1>
-					<p>{props.pet.description}</p>
-				</div>
+class SinglePet extends Component  {
+	constructor(props) {
+		super(props)
+		this.state = {
+			petsLoaded: true,
+		}
+		this.fetchPet = this.fetchPet.bind(this)
+	}
+
+	componentDidMount() {
+		this.fetchPet()
+	}
+
+	fetchPet() {
+		let selectedId = this.props.match.params.id
+		console.log(selectedId)
+		console.log(this, 'this is from fetch pet')
+		fetch(`/pets/${selectedId}`)
+	      .then(res => res.json())
+	      .then(res => {
+	      	console.log(res, 'this is the res from fetch pet')
+	        this.setState({
+	          currentPet: res.pet,
+	          petsLoaded: true,
+	          currentStatus: 'show',
+	          mountStarter: 'show'
+	        })
+	      }).catch(err => console.log(err))
+	}
+
+	// renderData() {
+	// 	console.log(this, 'this is the this for singlepet')
+	// 	return this.props.petList.map(pet => {
+	// 		if(pet.id === pet.id) {
+	// 		return(
+	// 			<p className={pet.id}> hi </p>
+	// 			)
+	// 	}})			
+	// }
+	
+	render(props) {		
+
+		return(
+			<div className="pet-single">
+				{(this.state.petsLoaded) ?
+					<p>data loaded</p> :
+					<p> loading this stuff</p>}
 			</div>
-		</div>
 		)
+	}
 }
 
 
+
 export default SinglePet;
+

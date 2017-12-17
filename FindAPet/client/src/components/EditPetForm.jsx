@@ -33,7 +33,7 @@ class EditPetForm extends Component {
 		console.log(this, 'this is this from updatechange')
 		let peaches = this.state.pet
 		this.setState((prevState, props) => {
-			const updatedPet = Object.assign({}, peaches, {[name]: val})
+			const updatedPet = Object.assign({}, prevState, peaches, {[name]: val})
 			return {pet: updatedPet}
 		})
 		console.log("handleupdatechange")

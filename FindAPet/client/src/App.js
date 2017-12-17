@@ -98,7 +98,6 @@ class App extends Component {
   }
 
   getAllPets() {
-    if (this.state.mountStarter === '') {
       fetch('/pets', {
         method: 'GET',
         headers: {
@@ -114,24 +113,11 @@ class App extends Component {
           mountStarter: 'list'
         })
       }).catch(err => console.log(err))
-    } else if (this.state.mountStarter === 'list') {
-      fetch(`/pets/${this.state.currentId}`)
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          currentPet: res.data.pet,
-          petsLoaded: true,
-          currentStatus: 'show',
-          mountStarter: 'show'
-        })
-      }).catch(err => console.log(err))
-    }
   }
 
 
-
-
   render() {
+    console.log(this, 'from app.js render')
     return (
       <Router>
         <div className="App">
@@ -151,10 +137,12 @@ class App extends Component {
             <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> 
             } />
           <Route exact path="/profile" render={() => <Dashboard />} />
+          
+
           <Route exact path="/pets" render={() => <PetList getAllPets={this.getAllPets} petList={this.state.petList} petListStatus={this.petListStatus} petsLoaded={this.state.petsLoaded} />} />
 
-          <Route exact path="/pets/:id" render={() => <SinglePet currentPet={this.state.currentPet} getAllPets={this.getAllPets} petList={this.state.petList}/>} />        
-          
+                
+          <Route exact path="/pets/:id" component={SinglePet} />          
 
            
 

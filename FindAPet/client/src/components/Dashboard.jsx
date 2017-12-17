@@ -87,7 +87,7 @@ class Dashboard extends Component {
 					}						
 					<Route exact path="/pets/:id/edit" render={(props) => <EditPetForm
 						{...props}
-					 pet={this.state.pet} state={this.state} getUserPets={this.props.getUserPets} />}
+					 pet={this.state.pet} state={this.state} getUserPets={this.getUserPets} />}
 					 />	
 					 
 						
