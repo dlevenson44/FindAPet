@@ -7,38 +7,57 @@ class EditPetForm extends Component {
 		super(props)
 		this.state = {
 			petStatus: '',
-			pet:{
-				name: this.props.myPets ? this.props.myPets.name : '',
-				post_type: this.props.myPets ? this.props.myPets.post_type : '',
-				animal: this.props.myPets ? this.props.myPets.animal : '',
-				breed: this.props.myPets ? this.props.myPets.breed : '',
-				age: this.props.myPets ? this.props.myPets.age : '',
-				picture: this.props.myPets ? this.props.myPets.picture : '',
-				description: this.props.myPets ? this.props.myPets.description : '',
-				foster_length: this.props.myPets ? this.props.myPets.foster_length : '',
-				id: this.props.myPets ? this.props.myPets.id : '',
-			}
+			// pet:{
+			// 	name: this.props.myPets ? this.props.myPets.name : '',
+			// 	post_type: this.props.myPets ? this.props.myPets.post_type : '',
+			// 	animal: this.props.myPets ? this.props.myPets.animal : '',
+			// 	breed: this.props.myPets ? this.props.myPets.breed : '',
+			// 	age: this.props.myPets ? this.props.myPets.age : '',
+			// 	picture: this.props.myPets ? this.props.myPets.picture : '',
+			// 	description: this.props.myPets ? this.props.myPets.description : '',
+			// 	foster_length: this.props.myPets ? this.props.myPets.foster_length : '',
+			// 	id: this.props.myPets ? this.props.myPets.id : '',
+			// }
 		}
-
+		console.log(this, 'this is from constructor in edit')
 		this.handleUpdateChange = this.handleUpdateChange.bind(this)
 		this.editPet = this.editPet.bind(this)
 		this.deletePet = this.deletePet.bind(this)
+		this.fetchPet = this.fetchPet.bind(this)
+		this.renderData = this.renderData.bind(this)
 	}
 
 	handleUpdateChange(e) {		
 		e.preventDefault()
-		console.log(this)
 		const name = e.target.name
 		const val = e.target.value
 		console.log(this, 'this is this from updatechange')
-		let peaches = this.state.pet
+		let peaches = this.state.currentPet
 		this.setState((prevState, props) => {
 			const updatedPet = Object.assign({}, prevState, peaches, {[name]: val})
 			return {pet: updatedPet}
 		})
-		console.log("handleupdatechange")
+		console.log(this, 'from end of handle')
 	}
 
+	componentDidMount() {
+		this.fetchPet()
+	}
+
+	fetchPet() {
+		let selectedId = this.props.match.params.id
+		fetch(`/pets/${selectedId}`)
+	      .then(res => res.json())
+	      .then(res => {
+	      	console.log(res, 'fetch in edit')
+	        this.setState({
+	          currentPet: res.pet,
+	          petsLoaded: true,
+	          currentStatus: 'show',
+	          mountStarter: 'show'
+	        })
+	      }).catch(err => console.log(err))		
+	}
 
 	editPet(e, data) {
 		e.preventDefault()
@@ -91,27 +110,43 @@ class EditPetForm extends Component {
 		})
 	}
 
+// placeholder={this.props.state.myPets[0].name}
+// placeholder={this.props.state.myPets[0].post_type}
+// placeholder={this.props.state.myPets[0].animal}
+// placeholder={this.props.state.myPets[0].breed}
+// placeholder={this.props.state.myPets[0].age}
+// placeholder={this.props.state.myPets[0].picture}
+// placeholder={this.props.state.myPets[0].description}
+// placeholder={this.props.state.myPets[0].foster_length}
+
+	renderData() {
+
+	}
+
 	render() {
-		{var newId = this
-		console.log(newId)}
+		console.log(this, 'this is from editpet render')
 		return(
-			<div className="edit-form">
+			<div className="pet-edit">
+				{(this.state.currentPet) ?
+				<div className="edit-form">
 				<form onSubmit={(e) => this.editPet(e, this.state.pet)} >
-					<input type="text" name={'name'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.props.state.myPets[0].name} />
-					<input type="text" name={'post_type'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.props.state.myPets[0].post_type} />
-					<input type="text" name={'animal'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.props.state.myPets[0].animal} />
-					<input type="text" name={'breed'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.props.state.myPets[0].breed} />
-					<input type="number" name={'age'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.props.state.myPets[0].age} />
-					<input type="text" name={'picture'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.props.state.myPets[0].picture} />
-					<input type="text" name={'description'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.props.state.myPets[0].description} />
-					<input type="text" name={'foster_length'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.props.state.myPets[0].foster_length} />
+					<input type="text" name={'name'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.name}  />
+					<input type="text" name={'post_type'} onChange={(e) => this.handleUpdateChange(e)}  />
+					<input type="text" name={'animal'} onChange={(e) => this.handleUpdateChange(e)}  />
+					<input type="text" name={'breed'} onChange={(e) => this.handleUpdateChange(e)}  />
+					<input type="number" name={'age'} onChange={(e) => this.handleUpdateChange(e)}  />
+					<input type="text" name={'picture'} onChange={(e) => this.handleUpdateChange(e)}  />
+					<input type="text" name={'description'} onChange={(e) => this.handleUpdateChange(e)}  />
+					<input type="text" name={'foster_length'} onChange={(e) => this.handleUpdateChange(e)}  />
 					<input type="submit" value="Edit Post" />						
 				</form>
 				<form className="delete-form" onSubmit={(e) => (e.preventDefault(), this.deletePet(this.props.match.params.id))}>
 					<button>Delete Post</button>
 				</form>
+			</div> :
+					<p> loading this stuff</p>}
 			</div>
-			)
+			)	
 	}
 }
 

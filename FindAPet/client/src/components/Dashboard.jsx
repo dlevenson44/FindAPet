@@ -63,9 +63,12 @@ class Dashboard extends Component {
 		}).catch(err => console.log(err))
 	}
 
-
+// render={(props) => <EditPetForm
+// 						{...props}
+// 					 pet={this.state.pet} state={this.state} getUserPets={this.getUserPets} />
 
 	render() {
+		console.log(this, 'this is from dashboard')
 		return(
 			<Router>
 				<div className="dash">
@@ -80,9 +83,7 @@ class Dashboard extends Component {
 					}) 
 						: <p>Loading.....</p>
 					}						
-					<Route exact path="/pets/:id/edit" render={(props) => <EditPetForm
-						{...props}
-					 pet={this.state.pet} state={this.state} getUserPets={this.getUserPets} />}
+					<Route exact path="/pets/:id/edit" component={EditPetForm}
 					 />	
 					 
 						
