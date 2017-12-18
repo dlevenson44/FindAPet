@@ -15,7 +15,7 @@ class Dashboard extends Component {
 				animal: props.pet ? props.pet.animal : '',
 				breed: props.pet ? props.pet.breed : '',
 				age: props.pet ? props.pet.age : '',
-				// picture: props.pet ? props.pet.picture : '',
+				picture: props.pet ? props.pet.picture : '',
 				description: props.pet ? props.pet.description : '',
 				foster_length: props.pet ? props.pet.foster_length : '',
 				id: props.pet ? props.pet.id : '',

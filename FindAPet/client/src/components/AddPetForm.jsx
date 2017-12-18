@@ -11,7 +11,6 @@ class AddPetForm extends Component {
 			animal: '',
 			breed: '',
 			age: '',
-			// picture: '',
 			description: '',
 			foster_length: '',
 		}
