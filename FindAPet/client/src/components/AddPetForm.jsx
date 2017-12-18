@@ -28,6 +28,7 @@ class AddPetForm extends Component {
 // 	<%= form_for @user, url: users_path, html: { multipart: true } do |form| %>
 //   <%= form.file_field :avatar %>
 // <% end %>
+// <input type="file" name="picture" placeholder="Picture" value={this.state.picture} onChange={this.handleChange} />
 
 	// <input type="text" name="picture" placeholder="Picture" value={this.state.picture} onChange={this.handleChange} />
 
