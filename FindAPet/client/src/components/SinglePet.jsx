@@ -30,7 +30,7 @@ class SinglePet extends Component  {
 	}
 
 // <img src={require("./home/priyanka/Finalproject/src/components/3.jpg")} alt="cannot display"/>
-
+// <img src={this.state.currentPet.picture} alt={this.state.currentPet.name} />
 
 
 
@@ -48,7 +48,7 @@ class SinglePet extends Component  {
 				<h3>{this.state.currentPet.age}</h3>
 			</div>
 			<div>
-				<img src={this.state.currentPet.picture} alt={this.state.currentPet.name} />
+				
 				<p>{this.state.currentPet.description}</p>
 			</div>
 			</div>
