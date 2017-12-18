@@ -28,11 +28,17 @@ class EditPetForm extends Component {
 		console.log(this, 'from end of handle')
 	}
 
-	componentWillMount() {
+	// componentWillMount() {
+	// 	this.fetchPet()
+	// }
+
+
+
+	componentDidMount() {
 		this.fetchPet()
 	}
 
-	componentDidMount() {
+	componentWillReceiveProps() {
 		this.fetchPet()
 	}
 
@@ -69,7 +75,7 @@ class EditPetForm extends Component {
 				animal: data.animal,
 				breed: data.breed,
 				age: data.age,
-				// picture: data.picture,
+				picture: data.picture,
 				description: data.description,
 				foster_length: data.foster_length,
 			}),
@@ -79,7 +85,7 @@ class EditPetForm extends Component {
 			this.setState({
 				pet: res.data
 			})
-			this.props.getUserPets()
+			// this.fetchPet()
 		}).catch(err => console.log(err))
 	}
 
@@ -101,10 +107,13 @@ class EditPetForm extends Component {
 			this.props.getUserPets()
 		})
 	}
-					// <input type="text" name={'picture'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.picture} />
+
+// <input type="text" name={'picture'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.picture} />
+
+//some function in render is setting state, causing render issue
 
 	render() {
-		console.log(this, 'this is from editpet render')
+		console.log(this, 'this is from editpet render')		
 		return(
 			<div className="pet-edit">
 				{(this.state.currentPet) ?
