@@ -69,7 +69,7 @@ class EditPetForm extends Component {
 				animal: data.animal,
 				breed: data.breed,
 				age: data.age,
-				picture: data.picture,
+				// picture: data.picture,
 				description: data.description,
 				foster_length: data.foster_length,
 			}),
@@ -101,7 +101,7 @@ class EditPetForm extends Component {
 			this.props.getUserPets()
 		})
 	}
-
+					// <input type="text" name={'picture'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.picture} />
 
 	render() {
 		console.log(this, 'this is from editpet render')
@@ -115,7 +115,7 @@ class EditPetForm extends Component {
 					<input type="text" name={'animal'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.animal} />
 					<input type="text" name={'breed'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.breed} />
 					<input type="number" name={'age'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.age} />
-					<input type="text" name={'picture'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.picture} />
+
 					<input type="text" name={'description'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.description} />
 					<input type="text" name={'foster_length'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.foster_length} />
 					<input type="submit" value="Edit Post" />						

@@ -1,0 +1,2 @@
+class AddAttachmentToPet < ApplicationRecord
+end
