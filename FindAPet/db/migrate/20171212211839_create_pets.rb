@@ -6,7 +6,6 @@ class CreatePets < ActiveRecord::Migration[5.1]
     	t.string :animal
     	t.string :breed
     	t.integer :age
-    	t.string :picture
     	t.string :description
     	t.string :foster_length
     	t.belongs_to :user

@@ -1,0 +1,2 @@
+class AddPictureToPet < ApplicationRecord
+end
