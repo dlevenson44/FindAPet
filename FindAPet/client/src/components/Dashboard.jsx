@@ -66,7 +66,6 @@ class Dashboard extends Component {
 
 
 	render() {
-		console.log(this, 'this is from dashboard')
 		return(
 			<Router>
 				<div className="dash">
