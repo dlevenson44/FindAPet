@@ -9,6 +9,14 @@ body {
   flex-direction: column;
 }
 
+
+.header {
+  color: #117ACA;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 44px;
+  letter-spacing: 5px
+}
+
 .nav {
   display: flex;
   flex-direction: row;
@@ -28,12 +36,16 @@ body {
 
 .nav-link:hover {
   border: 2px solid #EF3E4A;
+  font-weight: bold;
 }
 
 .nav-link:visited {
   color: #EF3E4A;
 }
 
-
-/*font-family: 'Permanent Marker', cursive;
-font-family: 'Quicksand', sans-serif;*/
+.footer {
+  color: #117ACA;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
