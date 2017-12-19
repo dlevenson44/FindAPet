@@ -120,20 +120,20 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="nav">
+            <div className="nav-list">
+              <Link to="/pets">Pets</Link>
+            </div>
           {(this.state.auth) ? 
-            (<div className="loggedin-nav">
-              <Link to="/profile">Profile</Link>
+            (<div className="auth-nav">
+              <Link to="/profile">View Profile</Link>
               <button onClick={this.handleLogout}>Logout</button>
              </div>             
               ) : (
-              <div className="loggedout-nav">
+              <div className="auth-nav">
                 <Link to="/login">Login</Link>
                 <Link to="/register">Register</Link>
               </div>
             )}
-            <div className="pets-list">
-              <Link to="/pets">Pets</Link>
-            </div>
           </div>
           <Route exact path="/register" render={() => (this.state.auth) ?
               <Redirect to="/profile" />  :

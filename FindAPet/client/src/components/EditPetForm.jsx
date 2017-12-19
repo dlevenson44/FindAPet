@@ -81,7 +81,7 @@ class EditPetForm extends Component {
 		reader.onloadend = () => {
 			this.setState({
 				//the line referencing picture to file var triggers 404 error
-				picture: file,
+				picture: reader.result,
 				imagePreviewUrl: reader.result,
 			})
 		}

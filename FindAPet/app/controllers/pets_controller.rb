@@ -51,3 +51,8 @@ class PetsController < ApiController
 	end
 
 end
+
+# ActionController::ParameterMissing (param is missing or the value is empty: pet):
+ 
+# app/controllers/pets_controller.rb:50:in `pet_params'
+# app/controllers/pets_controller.rb:33:in `update'
