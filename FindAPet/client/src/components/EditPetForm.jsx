@@ -7,26 +7,17 @@ class EditPetForm extends Component {
 		super(props)
 		this.state = {
 			petStatus: '',
+			picture: '',
 		}
 		console.log(this, 'this is from constructor in edit')
 		this.handleUpdateChange = this.handleUpdateChange.bind(this)
 		this.editPet = this.editPet.bind(this)
 		this.deletePet = this.deletePet.bind(this)
 		this.fetchPet = this.fetchPet.bind(this)
+		this.handleImageSubmit = this.handleImageSubmit.bind(this)
+		this.handleImageChange = this.handleImageChange.bind(this)
 	}
 
-	handleUpdateChange(e) {		
-		e.preventDefault()
-		const name = e.target.name
-		const val = e.target.value
-		console.log(this, 'this is this from updatechange')
-		let peaches = this.state.pet
-		this.setState((prevState, props) => {
-			const updatedPet = Object.assign({}, prevState, peaches, {[name]: val})
-			return {pet: updatedPet}
-		})
-		console.log(this, 'from end of handle')
-	}
 
 	// componentWillMount() {
 	// 	this.fetchPet()
@@ -59,6 +50,53 @@ class EditPetForm extends Component {
 	          mountStarter: 'show'
 	        })
 	      }).catch(err => console.log(err))		
+	}
+
+	handleImageSubmit(e, data) {
+		e.preventDefault()
+		console.log('image added')
+		fetch('/pets', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				token: Auth.getToken(),
+				'Authorization': `Token ${Auth.getToken()}`
+			},
+			//e.target.result should represent the content of the file being uploaded
+			body: e.target.result,
+			//if response is a JSON object
+		}).then(res => res.json())
+		//handle success response object
+		.then(success => console.log(success))
+		//handle the error response
+		.catch(err => console.log(err))
+	}
+
+	handleImageChange(e) {
+		e.preventDefault()
+		let reader = new FileReader()
+		let file = e.target.files[0]
+
+		reader.onloadend = () => {
+			this.setState({
+				file: file,
+				imagePreviewUrl: reader.result
+			})
+		}
+		reader.readAsDataURL(file)
+	}
+
+	handleUpdateChange(e) {		
+		e.preventDefault()
+		const name = e.target.name
+		const val = e.target.value
+		console.log(this, 'this is this from updatechange')
+		let peaches = this.state.pet
+		this.setState((prevState, props) => {
+			const updatedPet = Object.assign({}, prevState, peaches, {[name]: val})
+			return {pet: updatedPet}
+		})
+		console.log(this, 'from end of handle')
 	}
 
 	editPet(e, data) {
@@ -117,7 +155,15 @@ class EditPetForm extends Component {
 //some function in render is setting state, causing render issue
 
 	render() {
-		console.log(this, 'this is from editpet render')		
+		console.log(this, 'this is from the add form')
+		let imagePreviewUrl = this.state.picture
+		let $imagePreview = null
+		if(imagePreviewUrl) {
+			$imagePreview = (<img src={imagePreviewUrl} />)
+		}
+		else {
+			$imagePreview = (<div className="previewText">Please select an image to upload</div>)
+		}		
 		return(
 			<div className="pet-edit">
 				{(this.state.currentPet) ?
@@ -138,8 +184,18 @@ class EditPetForm extends Component {
 				</form>
 			</div> :
 					<p> loading this stuff</p>}
+						
+			<div className="image-upload-container">
+				<form onSubmit={(e) => this.handleImageSubmit(e)}>
+					<input className="file-input" type="file" onChange={(e) => this.handleImageChange(e)} />
+					<button className="submit-button" type="submit" onClick={(e) => this.handleImageSubmit(e)}>Upload Image</button>
+				</form>
+				<div className="image-preview">
+					{$imagePreview}
+				</div>
 			</div>
-			)	
+			</div>	
+		)
 	}
 }
 
