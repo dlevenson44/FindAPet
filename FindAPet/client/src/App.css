@@ -14,12 +14,14 @@ body {
   color: #117ACA;
   font-family: 'Permanent Marker', cursive;
   font-size: 44px;
-  letter-spacing: 5px
+  letter-spacing: 5px;
+  border-top: 40px;
 }
 
 .nav {
   display: flex;
   flex-direction: row;
+  border-top: 40px;
 }
 
 .auth-nav {
@@ -43,9 +45,37 @@ body {
   color: #EF3E4A;
 }
 
+.pet-inlist {
+  padding-left: 33%;
+}
+
+.list-header {
+  color: #117ACA;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.link-header {
+  color: #117ACA;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.list-link {
+  color: #EF3E4A;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.list-link:hover {
+  color: #117ACA;
+  font-weight: bold;
+}
+
+
 .footer {
   color: #117ACA;
   font-family: 'Quicksand', sans-serif;
   font-size: 16px;
   font-weight: bold;
+  padding-top: 60px;
 }

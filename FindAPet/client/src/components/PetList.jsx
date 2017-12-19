@@ -44,6 +44,7 @@ class PetList extends Component{
 	render() {
 		return(
 			<div className="pet-list">
+				<h1 className="list-header">Available Pets</h1>
 				{(this.props.petsLoaded)
 				? this.renderPets() :
 				<p>Loading Pets...</p>}
