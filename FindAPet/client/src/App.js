@@ -121,6 +121,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+          <Header />
           <div className="nav">
               <Link className="nav-link" to="/pets">Pets</Link>
           {(this.state.auth) ? 
@@ -143,8 +144,7 @@ class App extends Component {
             <Redirect to="/profile" /> :
             <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> 
             } />
-          <Route exact path="/profile" render={() => <Dashboard />} />
-          <Header />
+          <Route exact path="/profile" render={() => <Dashboard />} />          
           <Route exact path="/pets" render={() => <PetList getAllPets={this.getAllPets} petList={this.state.petList} petListStatus={this.petListStatus} petsLoaded={this.state.petsLoaded} />} />                
           <Route exact path="/pets/:id" component={SinglePet} />          
           <Footer />

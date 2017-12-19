@@ -1,5 +1,6 @@
 body {
   background-color: #FDF06F;
+  margin: 0 auto;
 }
 
 .App {
@@ -13,13 +14,24 @@ body {
   flex-direction: row;
 }
 
-.auth-nav{
+.auth-nav {
   display: flex;
   flex-direction: row;
 }
 
-.nav-link{
-  padding: 20px;
+.nav-link {  
+  color: #EF3E4A; 
+  font-family: 'Quicksand', sans-serif;
+  font-size: 22px;
+  padding: 20px; 
+}
+
+.nav-link:hover {
+  border: 2px solid #EF3E4A;
+}
+
+.nav-link:visited {
+  color: #EF3E4A;
 }
 
 
