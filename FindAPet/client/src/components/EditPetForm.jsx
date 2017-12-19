@@ -9,7 +9,6 @@ class EditPetForm extends Component {
 			petStatus: '',
 			picture: '',
 		}
-		console.log(this, 'this is from constructor in edit')
 		this.handleUpdateChange = this.handleUpdateChange.bind(this)
 		this.editPet = this.editPet.bind(this)
 		this.deletePet = this.deletePet.bind(this)
@@ -42,7 +41,6 @@ class EditPetForm extends Component {
 		fetch(`/pets/${selectedId}`)
 	      .then(res => res.json())
 	      .then(res => {
-	      	console.log(res, 'fetch in edit')
 	        this.setState({
 	          currentPet: res.pet,
 	          petsLoaded: true,
@@ -54,9 +52,11 @@ class EditPetForm extends Component {
 
 	handleImageSubmit(e, data) {
 		e.preventDefault()
+		const newId = this.props.match.params.id
 		console.log('image added')
-		fetch('/pets', {
-			method: 'POST',
+		console.log(this, 'this is form the handleImageSubmit')
+		fetch(`/pets/${newId}`, {
+			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
 				token: Auth.getToken(),
@@ -73,14 +73,16 @@ class EditPetForm extends Component {
 	}
 
 	handleImageChange(e) {
-		e.preventDefault()
+		e.preventDefault()		
+		console.log(this, 'this is from handleImageChange')
 		let reader = new FileReader()
 		let file = e.target.files[0]
 
 		reader.onloadend = () => {
 			this.setState({
-				file: file,
-				imagePreviewUrl: reader.result
+				//the line referencing picture to file var triggers 404 error
+				picture: file,
+				imagePreviewUrl: reader.result,
 			})
 		}
 		reader.readAsDataURL(file)
@@ -90,7 +92,7 @@ class EditPetForm extends Component {
 		e.preventDefault()
 		const name = e.target.name
 		const val = e.target.value
-		console.log(this, 'this is this from updatechange')
+		// console.log(this, 'this is this from updatechange')
 		let peaches = this.state.pet
 		this.setState((prevState, props) => {
 			const updatedPet = Object.assign({}, prevState, peaches, {[name]: val})
@@ -101,9 +103,9 @@ class EditPetForm extends Component {
 
 	editPet(e, data) {
 		e.preventDefault()
-		console.log(data, 'this is data')
+		// console.log(data, 'this is data')
 		const id = this.props.match.params.id;
-		console.log(this, 'this is this')
+		// console.log(this, 'this is this')
 		fetch(`/pets/${id}`, {
 			method: 'PUT',
 			headers: {
@@ -155,7 +157,7 @@ class EditPetForm extends Component {
 //some function in render is setting state, causing render issue
 
 	render() {
-		console.log(this, 'this is from the add form')
+		console.log(this, 'this is from the edit form in render')
 		let imagePreviewUrl = this.state.picture
 		let $imagePreview = null
 		if(imagePreviewUrl) {
@@ -190,9 +192,7 @@ class EditPetForm extends Component {
 					<input className="file-input" type="file" onChange={(e) => this.handleImageChange(e)} />
 					<button className="submit-button" type="submit" onClick={(e) => this.handleImageSubmit(e)}>Upload Image</button>
 				</form>
-				<div className="image-preview">
-					{$imagePreview}
-				</div>
+
 			</div>
 			</div>	
 		)

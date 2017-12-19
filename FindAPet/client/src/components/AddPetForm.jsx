@@ -40,7 +40,7 @@ class AddPetForm extends Component {
 					<input type="text" name="animal" placeholder="Animal" value={this.state.animal} onChange={this.handleChange} />
 					<input type="text" name="breed" placeholder="Breed" value={this.state.breed} onChange={this.handleChange} />
 					<input type="text" name="age" placeholder="Age" value={this.state.age} onChange={this.handleChange} />
-					<input type="file" name="picture" placeholder="Picture" value={this.state.picture} onChange={this.handleChange} />
+
 					<input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleChange} />
 					<input type="text" name="foster_length" placeholder="Foster Length (if applicable)" value={this.state.foster_length} onChange={this.handleChange} />
 					<input type="submit" value="Create Post" />
