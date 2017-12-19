@@ -15,6 +15,7 @@ class AddPetForm extends Component {
 			foster_length: '',
 		}
 		this.handleChange = this.handleChange.bind(this)
+		this.handleImageSubmit = this.handleImageSubmit.bind(this)
 	}
 
 	handleChange(e) {
@@ -24,6 +25,28 @@ class AddPetForm extends Component {
 			[name]: val,
 		})
 	}
+
+	handleImageSubmit(e, data) {
+		e.preventDefault()
+		console.log('image added')
+		fetch('/pets', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				token: Auth.getToken(),
+				'Authorization': `Token ${Auth.getToken()}`
+			},
+			//e.target.result should represent the content of the file being uploaded
+			body: e.target.result,
+			//if response is a JSON object
+		}).then(res => res.json())
+		//handle success response object
+		.then(success => console.log(success))
+		//handle the error response
+		.catch(err => console.log(err))
+	}
+
+	
 
 // <input type="file" name="picture" placeholder="Picture" value={this.state.picture} onChange={this.handleChange} />
 

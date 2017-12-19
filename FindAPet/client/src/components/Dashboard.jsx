@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Dropzone from 'react-dropzone'
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 import Auth from '../modules/Auth'
 import AddPetForm from './AddPetForm'
@@ -63,7 +64,9 @@ class Dashboard extends Component {
 		}).catch(err => console.log(err))
 	}
 
-
+	// onDrop(acceptedFiles, rejectedFiles) {
+		
+	// }
 
 	render() {
 		return(

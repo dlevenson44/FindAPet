@@ -42,6 +42,10 @@ class EditPetForm extends Component {
 		this.fetchPet()
 	}
 
+	// componentDidUpdate() {
+	// 	this.fetchPet()
+	// }
+
 	fetchPet() {
 		let selectedId = this.props.match.params.id
 		fetch(`/pets/${selectedId}`)
