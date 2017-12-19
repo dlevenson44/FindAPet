@@ -18,6 +18,11 @@ body {
   border-top: 40px;
 }
 
+.login-div{
+  display: flex;
+  flex-direction: column;
+}
+
 .nav {
   display: flex;
   flex-direction: row;
@@ -71,6 +76,38 @@ body {
   font-weight: bold;
 }
 
+.pet-name {
+  color: #117ACA;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 42px;
+  font-weight: bold;  
+}
+
+.pet-type {
+  color: #117ACA;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 32px;  
+}
+
+.pet-length {
+  color: #117ACA;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;  
+}
+
+.pet-details {
+  color: #117ACA;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 28px;
+  font-weight: bold;   
+}
+
+.pet-description {
+  color: #117ACA;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 22px;
+  width: 500px;
+}
 
 .footer {
   color: #117ACA;

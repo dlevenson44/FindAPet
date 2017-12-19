@@ -32,24 +32,22 @@ class SinglePet extends Component  {
 // <img src={require("./home/priyanka/Finalproject/src/components/3.jpg")} alt="cannot display"/>
 // <img src={this.state.currentPet.picture} alt={this.state.currentPet.name} />
 
-
-
 	renderData() {
 	
 		console.log(this.state.currentPet, 'this from renderData in singlepet')
 		return(
 			<div>
 			<div className="pet-basics">
-				<h1>{this.state.currentPet.name}</h1>
-				<h2>{this.state.currentPet.post_type}</h2>
-				<p>{this.state.currentPet.foster_length}</p>
-				<h3>{this.state.currentPet.animal}</h3>
-				<h3>{this.state.currentPet.breed}</h3>
-				<h3>{this.state.currentPet.age}</h3>
+				<h1 className="pet-name">{this.state.currentPet.name}</h1>
+				<h2 className="pet-type">{this.state.currentPet.post_type}</h2>
+				<p className="pet-length">{this.state.currentPet.foster_length}</p>
+				<h3 className="pet-details">{this.state.currentPet.animal}</h3>
+				<h3 className="pet-details">{this.state.currentPet.breed}</h3>
+				<h3 className="pet-details">{this.state.currentPet.age}</h3>
 			</div>
 			<div>
 				
-				<p>{this.state.currentPet.description}</p>
+				<p className="pet-description">{this.state.currentPet.description}</p>
 			</div>
 			</div>
 		)
