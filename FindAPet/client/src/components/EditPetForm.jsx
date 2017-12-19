@@ -83,6 +83,9 @@ class EditPetForm extends Component {
 				//the line referencing picture to file var triggers 404 error
 				picture: reader.result,
 				imagePreviewUrl: reader.result,
+				currentPet: {
+					picture: reader.result,
+				}
 			})
 		}
 		reader.readAsDataURL(file)

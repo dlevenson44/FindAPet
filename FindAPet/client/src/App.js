@@ -10,8 +10,10 @@ import Auth from './modules/Auth'
 import RegisterForm from './components/RegisterForm'
 import LoginForm from './components/LoginForm'
 import Dashboard from './components/Dashboard'
+import Header from './components/Header'
 import PetList from './components/PetList'
 import SinglePet from './components/SinglePet'
+import Footer from './components/Footer'
 
 
 
@@ -120,18 +122,16 @@ class App extends Component {
       <Router>
         <div className="App">
           <div className="nav">
-            <div className="nav-list">
-              <Link to="/pets">Pets</Link>
-            </div>
+              <Link className="nav-link" to="/pets">Pets</Link>
           {(this.state.auth) ? 
             (<div className="auth-nav">
-              <Link to="/profile">View Profile</Link>
-              <button onClick={this.handleLogout}>Logout</button>
+              <Link className="nav-link" to="/profile">View Profile</Link>
+              <button className="nav-button" onClick={this.handleLogout}>Logout</button>
              </div>             
               ) : (
               <div className="auth-nav">
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
+                <Link className="nav-link" to="/login">Login</Link>
+                <Link className="nav-link" to="/register">Register</Link>
               </div>
             )}
           </div>
@@ -144,9 +144,11 @@ class App extends Component {
             <LoginForm handleLoginSubmit={this.handleLoginSubmit} /> 
             } />
           <Route exact path="/profile" render={() => <Dashboard />} />
+          <Header />
           <Route exact path="/pets" render={() => <PetList getAllPets={this.getAllPets} petList={this.state.petList} petListStatus={this.petListStatus} petsLoaded={this.state.petsLoaded} />} />                
           <Route exact path="/pets/:id" component={SinglePet} />          
-        </div>
+          <Footer />
+        </div>        
       </Router>
     );
   }
