@@ -11,6 +11,7 @@ class AddPetForm extends Component {
 			animal: '',
 			breed: '',
 			age: '',
+			picture: null,
 			description: '',
 			foster_length: '',
 		}
@@ -67,7 +68,7 @@ class AddPetForm extends Component {
 
 	render() {
 		console.log(this, 'this is from the add form')
-		let imagePreviewUrl = this.state
+		let imagePreviewUrl = this.state.picture
 		let $imagePreview = null
 		if(imagePreviewUrl) {
 			$imagePreview = (<img src={imagePreviewUrl} />)
@@ -95,6 +96,7 @@ class AddPetForm extends Component {
 				<div className="image-preview">
 					{$imagePreview}
 				</div>
+
 			</div>
 			)
 	}
