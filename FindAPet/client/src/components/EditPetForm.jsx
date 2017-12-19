@@ -158,10 +158,10 @@ class EditPetForm extends Component {
 
 	render() {
 		console.log(this, 'this is from the edit form in render')
-		let imagePreviewUrl = this.state.picture
+		let imagePreviewUrl = this.state.imagePreviewUrl
 		let $imagePreview = null
 		if(imagePreviewUrl) {
-			$imagePreview = (<img src={imagePreviewUrl} />)
+			$imagePreview = (<img src={imagePreviewUrl} style={{width: 300, height: 300}} />)
 		}
 		else {
 			$imagePreview = (<div className="previewText">Please select an image to upload</div>)
@@ -194,6 +194,13 @@ class EditPetForm extends Component {
 				</form>
 
 			</div>
+			<div className="preview-container">
+          		{($imagePreview) ?
+          			<div className="img-preview">
+          				{$imagePreview}
+          			</div> :
+          				<p>loading image preview</p>}
+        	</div>
 			</div>	
 		)
 	}
