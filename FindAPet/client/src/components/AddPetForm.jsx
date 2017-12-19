@@ -88,6 +88,13 @@ class AddPetForm extends Component {
 					<input type="text" name="foster_length" placeholder="Foster Length (if applicable)" value={this.state.foster_length} onChange={this.handleChange} />
 					<input type="submit" value="Create Post" />
 				</form>
+				<form onSubmit={(e) => this.handleImageSubmit(e)}>
+					<input className="file-input" type="file" onChange={(e) => this.handleImageChange(e)} />
+					<button className="submit-button" type="submit" onClick={(e) => this.handleImageSubmit(e)}>Upload Image</button>
+				</form>
+				<div className="image-preview">
+					{$imagePreview}
+				</div>
 			</div>
 			)
 	}
