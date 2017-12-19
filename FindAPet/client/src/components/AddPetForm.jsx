@@ -16,6 +16,7 @@ class AddPetForm extends Component {
 		}
 		this.handleChange = this.handleChange.bind(this)
 		this.handleImageSubmit = this.handleImageSubmit.bind(this)
+		this.handleImageChange = this.handleImageChange.bind(this)
 	}
 
 	handleChange(e) {
@@ -46,13 +47,26 @@ class AddPetForm extends Component {
 		.catch(err => console.log(err))
 	}
 
-	
+	handleImageChange(e) {
+		e.preventDefault()
+		let reader = new FileReader()
+		let file = e.target.files[0]
+
+		reader.onloadend = () => {
+			this.setState({
+				file: file,
+				imagePreviewUrl: reader.result
+			})
+		}
+		reader.readAsDataURL(file)
+	}
 
 // <input type="file" name="picture" placeholder="Picture" value={this.state.picture} onChange={this.handleChange} />
 
 	// <input type="text" name="picture" placeholder="Picture" value={this.state.picture} onChange={this.handleChange} />
 
 	render() {
+		console.log(this, 'this is from the add form')
 		return(
 			<div className="add-form">
 				<form onSubmit={(e) => this.props.addPet(e, this.state)} >
