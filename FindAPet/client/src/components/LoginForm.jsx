@@ -22,9 +22,9 @@ class LoginForm extends Component {
 		return(
 			<div className="login-div">
 				<form onSubmit={(e) => this.props.handleLoginSubmit(e, this.state)}>
-					<input type="text" name="username" placeholder="username" value={this.state.username} onChange={this.handleChange} />
-					<input type="password" name="password" placeholder="password" value={this.state.password} onChange={this.handleChange} />
-					<input type="submit" value="Login" />
+					<input className="login-box" type="text" name="username" placeholder="username" value={this.state.username} onChange={this.handleChange} />
+					<input className="login-box" type="password" name="password" placeholder="password" value={this.state.password} onChange={this.handleChange} />
+					<button className="login-submit" type="submit">Login</button>
 				</form>
 			</div>
 			)
