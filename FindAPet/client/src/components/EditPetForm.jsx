@@ -174,15 +174,15 @@ class EditPetForm extends Component {
 				{(this.state.currentPet) ?
 				<div className="edit-form">
 				<form onSubmit={(e) => this.editPet(e, this.state.pet)} >
-					<input type="text" name={'name'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.name}  />
-					<input type="text" name={'post_type'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.post_type} />
-					<input type="text" name={'animal'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.animal} />
-					<input type="text" name={'breed'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.breed} />
-					<input type="number" name={'age'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.age} />
+					<input className="info-box" type="text" name={'name'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.name}  />
+					<input className="info-box" type="text" name={'post_type'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.post_type} />
+					<input className="info-box" type="text" name={'animal'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.animal} />
+					<input className="info-box" type="text" name={'breed'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.breed} />
+					<input className="info-box" type="number" name={'age'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.age} />
 
-					<input type="text" name={'description'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.description} />
-					<input type="text" name={'foster_length'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.foster_length} />
-					<input type="submit" value="Edit Post" />						
+					<input className="info-box" type="text" name={'description'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.description} />
+					<input className="info-box" type="text" name={'foster_length'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.foster_length} />
+					<input className="info-box" type="submit" value="Edit Post" />						
 				</form>
 				<form className="delete-form" onSubmit={(e) => (e.preventDefault(), this.deletePet(this.props.match.params.id))}>
 					<button>Delete Post</button>

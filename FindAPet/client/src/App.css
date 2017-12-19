@@ -57,7 +57,7 @@ body {
   width: 60px;
   border-radius: 10px;
   background-color: white;
-  /*border-color: white;*/
+  border: 1px black solid;
   font-size: 18px;
 }
 
@@ -69,9 +69,8 @@ body {
 .register-box {
   height: 30px;
   width: 250px;
-  border-radius: 75px;
+  border-radius: 5px;
   background-color: white;
-  /*border-color: white;*/
   font-size: 16px;
   border: 1px black solid;
   margin: 10px;
@@ -84,6 +83,42 @@ body {
   background-color: white;
   border-color: white;
   font-size: 16px;
+}
+
+.profile-header {
+  color: #117ACA;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 28px;
+  font-weight: bold;  
+}
+
+.dash {
+  padding-left: 25%;
+  width: 800px;
+}
+
+.profile-desc {
+  color: #117ACA;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 18px;  
+  font-weight: bold;
+}
+
+.info-box {
+  height: 30px;
+  width: 250px;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 16px;
+  border: 1px black solid;
+  margin: 10px;  
+}
+
+.info-submit {
+  height: 30px;
+  width: 80px;
+  border-radius: 10px;
+
 }
 
 .pet-inlist {
