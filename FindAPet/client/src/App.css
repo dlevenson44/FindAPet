@@ -97,13 +97,6 @@ body {
   width: 800px;
 }
 
-.profile-desc {
-  color: #117ACA;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 18px;  
-  font-weight: bold;
-}
-
 .info-box {
   height: 30px;
   width: 250px;
@@ -116,9 +109,37 @@ body {
 
 .info-submit {
   height: 30px;
+  width: 350px;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 12px;
+  border: 1px black solid;
+  margin: 10px;    
+}
+
+.info-submit:hover{
+  background-color: #117ACA;
+  color: white;
+}
+
+.info-submit {
+  height: 30px;
   width: 80px;
   border-radius: 10px;
 
+}
+
+.edit-link {
+  color: #EF3E4A;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 24px;
+  padding: 10px;
+  padding-left: 15%;
+}
+
+.edit-link:hover {
+  color: #117ACA;
+  font-weight: bold;
 }
 
 .pet-inlist {

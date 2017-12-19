@@ -73,13 +73,14 @@ class Dashboard extends Component {
 						<AddPetForm addPet={this.addPet} />	
 					</div>
 					<div className="edit-container">				
-						<h3 className="profile-header">Existing Posts</h3>		
-						<p className="profile-desc">Click on the pet name to edit or delete its post.</p>					
+						<div className="text-container">							
+							<h3 className="profile-header">Click on the pet name to edit or delete its post.</h3>			
+						</div>
 						{(this.state.petsLoaded) 
 							? this.state.myPets.map((pet, index) => {
 								var editPath=`/pets/${pet.id}/edit`
 							return (
-									<Link to={editPath} key={pet.id}>{pet.name}</Link>
+									<Link className="edit-link" to={editPath} key={pet.id}>{pet.name}</Link>
 								)
 						}) 
 							: <p>Loading.....</p>

@@ -182,10 +182,10 @@ class EditPetForm extends Component {
 
 					<input className="info-box" type="text" name={'description'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.description} />
 					<input className="info-box" type="text" name={'foster_length'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.foster_length} />
-					<input className="info-box" type="submit" value="Edit Post" />						
+					<input className="info-submit" type="submit" value="Edit Post" />						
 				</form>
 				<form className="delete-form" onSubmit={(e) => (e.preventDefault(), this.deletePet(this.props.match.params.id))}>
-					<button>Delete Post</button>
+					<input className="info-submit" type="submit" value="Delete Post" />
 				</form>
 			</div> :
 					<p> loading this stuff</p>}
