@@ -127,7 +127,7 @@ class App extends Component {
           {(this.state.auth) ? 
             (<div className="auth-nav">
               <Link className="nav-link" to="/profile">View Profile</Link>
-              <button className="nav-button" onClick={this.handleLogout}>Logout</button>
+              <a className="nav-link" onClick={this.handleLogout}>Logout</a>
              </div>             
               ) : (
               <div className="auth-nav">

@@ -18,10 +18,7 @@ body {
   border-top: 40px;
 }
 
-.login-div{
-  display: flex;
-  flex-direction: column;
-}
+
 
 .nav {
   display: flex;
@@ -39,11 +36,12 @@ body {
   font-family: 'Quicksand', sans-serif;
   font-size: 22px;
   padding: 20px; 
+  text-decoration: underline;
 }
 
 .nav-link:hover {
   border: 2px solid #EF3E4A;
-  font-weight: bold;
+  font-weight: bold;  
 }
 
 .nav-link:visited {
