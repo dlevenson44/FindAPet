@@ -123,7 +123,7 @@ class App extends Component {
         <div className="App">
           <Header />
           <div className="nav">
-              <Link className="nav-link" to="/pets">Pets</Link>
+              <Link className="nav-link" to="/pets" onClick={() => this.getAllPets()}>Pets</Link>
           {(this.state.auth) ? 
             (<div className="auth-nav">
               <Link className="nav-link" to="/profile">View Profile</Link>

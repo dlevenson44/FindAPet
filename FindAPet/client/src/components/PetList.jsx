@@ -9,30 +9,12 @@ class PetList extends Component{
 		super(props)
 		this.state = {
 		}
-		this.getAllPets = this.getAllPets.bind(this)
+		// this.getAllPets = this.getAllPets.bind(this)
 	}	
 
 	componentDidMount() {
-		this.getAllPets
+		this.props.getAllPets
 	}
-
-	getAllPets() {
-      fetch('/pets', {
-        method: 'GET',
-        headers: {
-          token: Auth.getToken(),
-          'Authorization': `Token ${Auth.getToken()}`,
-        }
-      }).then(res => res.json())
-      .then(res => {
-        this.setState({
-          petList: res.pets,
-          petsLoaded: true,
-          currentStatus: 'list',
-          mountStarter: 'list'
-        })
-      }).catch(err => console.log(err))
-  	}
 
 	renderPets() {
 		return this.props.petList.map(pet => {
