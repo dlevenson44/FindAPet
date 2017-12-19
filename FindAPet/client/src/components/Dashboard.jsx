@@ -66,8 +66,6 @@ class Dashboard extends Component {
 	}
 
 	fetchPet(id) {
-		console.log(this, 'from fetchpet in dashboard')
-		// let selectedId = this.props.match.params.id
 		fetch(`/pets/${id}`)
 	      .then(res => res.json())
 	      .then(res => {
@@ -79,8 +77,6 @@ class Dashboard extends Component {
 	        })
 	      }).catch(err => console.log(err))		
 	}
-
-	// onClick={}
 
 	render() {
 		return(

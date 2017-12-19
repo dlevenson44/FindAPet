@@ -1,8 +1,6 @@
 import React from 'react'
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 
-// <img src={props.pet.picture} />
-
 const Pet = (props) => {
 	return(
 		<div className="pet-inlist">

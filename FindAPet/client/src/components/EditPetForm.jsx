@@ -68,13 +68,12 @@ class EditPetForm extends Component {
 		let file = e.target.files[0]
 
 		reader.onloadend = () => {
-			this.setState({
-				//the line referencing picture to file var triggers 404 error
-				picture: reader.result,
-				imagePreviewUrl: reader.result,
-				currentPet: {
-					picture: reader.result,
-				}
+			let mango = this.state.currentPet
+			this.setState((prevState) => {
+				//the line referencing picture to file var triggers 404 error				
+				const updatedPetPicture = Object.assign({}, prevState, mango)
+				return {pet: updatedPetPicture, picture: reader.result,
+				imagePreviewUrl: reader.result}
 			})
 		}
 		reader.readAsDataURL(file)
