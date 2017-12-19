@@ -9,7 +9,6 @@ class PetList extends Component{
 		super(props)
 		this.state = {
 		}
-		// this.getAllPets = this.getAllPets.bind(this)
 	}	
 
 	componentDidMount() {

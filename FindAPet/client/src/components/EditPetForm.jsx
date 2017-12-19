@@ -17,13 +17,6 @@ class EditPetForm extends Component {
 		this.handleImageChange = this.handleImageChange.bind(this)
 	}
 
-
-	// componentWillMount() {
-	// 	this.fetchPet()
-	// }
-
-
-
 	componentDidMount() {
 		this.fetchPet()
 	}
@@ -31,10 +24,6 @@ class EditPetForm extends Component {
 	componentWillReceiveProps() {
 		this.fetchPet()
 	}
-
-	// componentDidUpdate() {
-	// 	this.fetchPet()
-	// }
 
 	fetchPet() {
 		let selectedId = this.props.match.params.id
@@ -95,7 +84,6 @@ class EditPetForm extends Component {
 		e.preventDefault()
 		const name = e.target.name
 		const val = e.target.value
-		// console.log(this, 'this is this from updatechange')
 		let peaches = this.state.pet
 		this.setState((prevState, props) => {
 			const updatedPet = Object.assign({}, prevState, peaches, {[name]: val})
@@ -106,9 +94,7 @@ class EditPetForm extends Component {
 
 	editPet(e, data) {
 		e.preventDefault()
-		// console.log(data, 'this is data')
 		const id = this.props.match.params.id;
-		// console.log(this, 'this is this')
 		fetch(`/pets/${id}`, {
 			method: 'PUT',
 			headers: {
@@ -132,7 +118,6 @@ class EditPetForm extends Component {
 			this.setState({
 				pet: res.data
 			})
-			// this.fetchPet()
 		}).catch(err => console.log(err))
 	}
 
@@ -156,8 +141,6 @@ class EditPetForm extends Component {
 	}
 
 // <input type="text" name={'picture'} onChange={(e) => this.handleUpdateChange(e)} placeholder={this.state.currentPet.picture} />
-
-//some function in render is setting state, causing render issue
 
 	render() {
 		console.log(this, 'this is from the edit form in render')
