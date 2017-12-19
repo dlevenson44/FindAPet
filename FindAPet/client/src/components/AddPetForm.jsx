@@ -67,6 +67,14 @@ class AddPetForm extends Component {
 
 	render() {
 		console.log(this, 'this is from the add form')
+		let imagePreviewUrl = this.state
+		let $imagePreview = null
+		if(imagePreviewUrl) {
+			$imagePreview = (<img src={imagePreviewUrl} />)
+		}
+		else {
+			$imagePreview = (<div className="previewText">Please select an image to upload</div>)
+		}
 		return(
 			<div className="add-form">
 				<form onSubmit={(e) => this.props.addPet(e, this.state)} >
