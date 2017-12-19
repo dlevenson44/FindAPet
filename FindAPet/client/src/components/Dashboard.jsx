@@ -24,6 +24,7 @@ class Dashboard extends Component {
 			editPath: ''
 		}
 		this.getUserPets = this.getUserPets.bind(this)
+		this.fetchPet = this.fetchPet.bind(this)
 	}
 
 	componentDidMount(){
@@ -64,6 +65,23 @@ class Dashboard extends Component {
 		}).catch(err => console.log(err))
 	}
 
+	fetchPet(id) {
+		console.log(this, 'from fetchpet in dashboard')
+		// let selectedId = this.props.match.params.id
+		fetch(`/pets/${id}`)
+	      .then(res => res.json())
+	      .then(res => {
+	        this.setState({
+	          currentPet: res.pet,
+	          petsLoaded: true,
+	          currentStatus: 'show',
+	          mountStarter: 'show'
+	        })
+	      }).catch(err => console.log(err))		
+	}
+
+	// onClick={}
+
 	render() {
 		return(
 			<Router>
@@ -80,7 +98,7 @@ class Dashboard extends Component {
 							? this.state.myPets.map((pet, index) => {
 								var editPath=`/pets/${pet.id}/edit`
 							return (
-									<Link className="edit-link" to={editPath} key={pet.id}>{pet.name}</Link>
+									<Link onClick={() => this.fetchPet(pet.id)} className="edit-link" to={editPath} key={pet.id}>{pet.name}</Link>
 								)
 						}) 
 							: <p>Loading.....</p>
