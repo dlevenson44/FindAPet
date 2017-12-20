@@ -66,14 +66,22 @@ class EditPetForm extends Component {
 		console.log(this, 'this is from handleImageChange')
 		let reader = new FileReader()
 		let file = e.target.files[0]
-
+		console.log(file, 'this is the file value')
+		console.log(this, 'this is from filechange')
 		reader.onloadend = () => {
 			let mango = this.state.currentPet
-			this.setState((prevState) => {
+			console.log(mango)
+			this.setState({
 				//the line referencing picture to file var triggers 404 error				
-				const updatedPetPicture = Object.assign({}, prevState, mango)
-				return {pet: updatedPetPicture, picture: reader.result,
-				imagePreviewUrl: reader.result}
+				// const updatedPetPicture = Object.assign({}, prevState, mango)
+				// return {currentPet: updatedPetPicture, picture: reader.result,
+				// imagePreviewUrl: reader.result}
+				picture: file,
+				imagePreviewUrl: reader.result
+			})
+			this.setState((prevState) => {
+				const updatedPetImage = Object.assign({}, prevState, mango)
+				console.log(updatedPetImage)
 			})
 		}
 		reader.readAsDataURL(file)
