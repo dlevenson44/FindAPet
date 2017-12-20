@@ -67,10 +67,8 @@ class EditPetForm extends Component {
 		let reader = new FileReader()
 		let file = e.target.files[0]
 		console.log(file, 'this is the file value')
-		console.log(this, 'this is from filechange')
 		reader.onloadend = () => {
 			let mango = this.state.currentPet
-			console.log(mango)
 			this.setState({
 				//the line referencing picture to file var triggers 404 error				
 				// const updatedPetPicture = Object.assign({}, prevState, mango)
@@ -82,6 +80,14 @@ class EditPetForm extends Component {
 			this.setState((prevState) => {
 				const updatedPetImage = Object.assign({}, prevState, mango)
 				console.log(updatedPetImage)
+				return({
+					// picture_content_type, picture_file_name, picture_file_size, picture_updated_at
+					// file.name, file.size, file.type, file.lastmodified
+					picture_content_type: file.type,
+					picture_file_name: file.name, 
+					picture_file_size: file.size,
+					picture_updated_at: file.lastmodified
+				})
 			})
 		}
 		reader.readAsDataURL(file)
