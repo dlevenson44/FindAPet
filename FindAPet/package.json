@@ -1,5 +1,7 @@
 {
   "name": "FindAPet",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "react-validation": "^3.0.7"
+  }
 }
